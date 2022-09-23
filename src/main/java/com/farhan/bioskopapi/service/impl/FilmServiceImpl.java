@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -42,5 +43,15 @@ public class FilmServiceImpl implements FilmService {
     @Override
     public void removeOne(String id){
         filmRepository.deleteById(id);
+    }
+
+    @Override
+    public FilmEntity findByName(String name) {
+        return filmRepository.findByName(name);
+    }
+
+    @Override
+    public List<FilmEntity> findByStatus(Boolean status) {
+        return filmRepository.findByStatus(status);
     }
 }

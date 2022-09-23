@@ -1,6 +1,8 @@
 package com.farhan.bioskopapi.controller;
 
 import com.farhan.bioskopapi.dto.ResponseData;
+import com.farhan.bioskopapi.dto.SearchDto;
+import com.farhan.bioskopapi.dto.SearchStatusDto;
 import com.farhan.bioskopapi.entity.FilmEntity;
 import com.farhan.bioskopapi.service.FilmService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +13,7 @@ import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @RestController
 @RequestMapping("/bioskop/api/films")
@@ -37,8 +40,6 @@ public class FilmController {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(responseData);
         }
 
-
-
         responseData.setStatus(true);
         responseData.getMessages().add("sukses");
         responseData.setData(filmService.save(filmEntity));
@@ -58,6 +59,16 @@ public class FilmController {
     @PutMapping
     public FilmEntity update(@RequestBody FilmEntity filmEntity){
         return filmService.save(filmEntity);
+    }
+
+    @PostMapping("/search/name")
+    public FilmEntity getFilmByName(@RequestBody SearchDto searchDto){
+        return filmService.findByName(searchDto.getSearchKey());
+    }
+
+    @PostMapping("/search/status")
+    public List<FilmEntity> getFilmByStatus(@RequestBody SearchStatusDto searchStatusDto){
+        return filmService.findByStatus(searchStatusDto.getStatusKey());
     }
 
     @DeleteMapping("/{id}")
