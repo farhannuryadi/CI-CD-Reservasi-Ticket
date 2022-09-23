@@ -10,7 +10,4 @@ import java.util.List;
 
 @Repository
 public interface ScheduleRepository extends JpaRepository<ScheduleEntity, Long> {
-
-    @Query("SELECT s FROM ScheduleEntity s WHERE s.film :idFilm")
-    List<ScheduleEntity> findScheduleByFilm(@PathParam("idFilm") String idFilm);
 }
