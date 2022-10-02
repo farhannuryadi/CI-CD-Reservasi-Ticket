@@ -21,7 +21,7 @@ public class ScheduleEntity implements Serializable {
     @Column(name = "schedule_id")
     private Long id;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "film_id")
     private FilmEntity film;
 

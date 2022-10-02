@@ -2,6 +2,7 @@ package com.farhan.bioskopapi.controller;
 
 import com.farhan.bioskopapi.dto.ResponseData;
 import com.farhan.bioskopapi.dto.ScheduleDto;
+import com.farhan.bioskopapi.dto.SearchDto;
 import com.farhan.bioskopapi.entity.FilmEntity;
 import com.farhan.bioskopapi.entity.ScheduleEntity;
 import com.farhan.bioskopapi.entity.StudioEntity;
@@ -17,6 +18,7 @@ import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @RestController
 @RequestMapping("/bioskop/api/schedules")
@@ -113,5 +115,23 @@ public class ScheduleController {
     @DeleteMapping("/{id}")
     public void removeOne(@PathVariable("id") Long id){
         scheduleService.removeOne(id);
+    }
+
+    @PostMapping("/film/name")
+    public ResponseEntity<ResponseData<List<ScheduleEntity>>> findFilmName(@RequestBody SearchDto filmName, Errors errors){
+        ResponseData<List<ScheduleEntity>> responseData = new ResponseData<>();
+        if (errors.hasErrors()) {
+            for (ObjectError error: errors.getAllErrors()) {
+                responseData.getMessages().add(error.getDefaultMessage());
+            }
+            responseData.setStatus(false);
+            responseData.setData(null);
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(responseData);
+        }
+        responseData.setStatus(true);
+        responseData.getMessages().add("sukses");
+        FilmEntity filmEntity = filmService.findByName(filmName.getSearchKey());
+        responseData.setData(scheduleService.findByFilmName(filmEntity));
+        return ResponseEntity.ok(responseData);
     }
 }
