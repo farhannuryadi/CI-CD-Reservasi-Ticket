@@ -1,7 +1,6 @@
 package com.farhan.bioskopapi.controller;
 
-import com.farhan.bioskopapi.dto.ResponseData;
-import com.farhan.bioskopapi.entity.FilmEntity;
+import com.farhan.bioskopapi.dto.response.ResponseData;
 import com.farhan.bioskopapi.entity.StudioEntity;
 import com.farhan.bioskopapi.service.StudioService;
 import org.springframework.beans.factory.annotation.Autowired;

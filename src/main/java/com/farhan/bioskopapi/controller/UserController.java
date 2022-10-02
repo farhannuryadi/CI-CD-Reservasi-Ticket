@@ -1,6 +1,6 @@
 package com.farhan.bioskopapi.controller;
 
-import com.farhan.bioskopapi.dto.ResponseData;
+import com.farhan.bioskopapi.dto.response.ResponseData;
 import com.farhan.bioskopapi.entity.UserEntity;
 import com.farhan.bioskopapi.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;

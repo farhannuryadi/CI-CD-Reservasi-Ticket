@@ -1,8 +1,8 @@
 package com.farhan.bioskopapi.controller;
 
-import com.farhan.bioskopapi.dto.ResponseData;
-import com.farhan.bioskopapi.dto.SearchDto;
-import com.farhan.bioskopapi.dto.SearchStatusDto;
+import com.farhan.bioskopapi.dto.response.ResponseData;
+import com.farhan.bioskopapi.dto.request.SearchDto;
+import com.farhan.bioskopapi.dto.request.SearchStatusDto;
 import com.farhan.bioskopapi.entity.FilmEntity;
 import com.farhan.bioskopapi.service.FilmService;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,16 +1,14 @@
 package com.farhan.bioskopapi.controller;
 
-import com.farhan.bioskopapi.dto.ResponseData;
-import com.farhan.bioskopapi.dto.ScheduleDto;
-import com.farhan.bioskopapi.dto.SearchDto;
+import com.farhan.bioskopapi.dto.response.ResponseData;
+import com.farhan.bioskopapi.dto.request.ScheduleDto;
+import com.farhan.bioskopapi.dto.request.SearchDto;
 import com.farhan.bioskopapi.entity.FilmEntity;
 import com.farhan.bioskopapi.entity.ScheduleEntity;
-import com.farhan.bioskopapi.entity.StudioEntity;
 import com.farhan.bioskopapi.service.FilmService;
 import com.farhan.bioskopapi.service.ScheduleService;
 import com.farhan.bioskopapi.service.StudioService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.Errors;

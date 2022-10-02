@@ -1,4 +1,4 @@
-package com.farhan.bioskopapi.dto;
+package com.farhan.bioskopapi.dto.request;
 
 import lombok.Getter;
 import lombok.Setter;

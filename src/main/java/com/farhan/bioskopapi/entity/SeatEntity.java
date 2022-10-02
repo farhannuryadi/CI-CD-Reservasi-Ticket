@@ -21,7 +21,4 @@ public class SeatEntity implements Serializable {
 
     @Column(name = "seat_name", nullable = false)
     private String seatName;
-
-    @Column(name = "seat_status", nullable = false)
-    private Boolean seatStatus;
 }
