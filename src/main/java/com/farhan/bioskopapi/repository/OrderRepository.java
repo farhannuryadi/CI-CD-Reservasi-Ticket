@@ -17,6 +17,9 @@ public interface OrderRepository extends JpaRepository<OrderEntity, Long> {
     @Query("SELECT o FROM OrderEntity o WHERE o.user = :user")
     List<OrderEntity> findByUsername(UserEntity user);
 
+    @Query(value = "SELECT order_id FROM orders WHERE schedule_id = :scheduleId AND username = :username", nativeQuery = true)
+    Long findOrderIdByScheduleIdAndUsername(Long scheduleId, String username);
+
     @Transactional
     @Modifying(clearAutomatically = true)
     @Query(value = "INSERT INTO orders (date_order, quantity, total_price, schedule_id, username)\n" +

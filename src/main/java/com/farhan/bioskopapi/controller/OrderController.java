@@ -61,7 +61,10 @@ public class OrderController {
 
         ResponseData responseData = new ResponseData();
         List<String> seats = new ArrayList<>(orderRequest.getSeatName());
+
         orderService.createOrder(scheduleId, username, seats);
+        orderDetailService.createOrderDetail(seats, scheduleId, username);
+
         responseData.setStatusCode(StatusCode.OK);
         responseData.setStatus(true);
         responseData.getMessages().add("sukses");
