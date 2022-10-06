@@ -34,8 +34,7 @@ public class OrderEntity implements Serializable {
     private Long id;
 
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+7")
-    @CreationTimestamp
-    @Column(name = "date_order", nullable = false)
+    @Column(name = "date_order", nullable = false, updatable = false, insertable = false, columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
     private LocalDateTime dateOrder;
 
     @Column(name = "quantity")

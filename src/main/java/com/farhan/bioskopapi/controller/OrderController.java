@@ -1,7 +1,9 @@
 package com.farhan.bioskopapi.controller;
 
+import com.farhan.bioskopapi.dto.request.OrderRequest;
 import com.farhan.bioskopapi.dto.response.ResponseData;
 import com.farhan.bioskopapi.dto.response.SeatAvailabelResponse;
+import com.farhan.bioskopapi.entity.OrderEntity;
 import com.farhan.bioskopapi.entity.SeatEntity;
 import com.farhan.bioskopapi.helper.utility.StatusCode;
 import com.farhan.bioskopapi.service.OrderDetailService;
@@ -10,11 +12,9 @@ import com.farhan.bioskopapi.service.ScheduleService;
 import com.farhan.bioskopapi.service.SeatService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -50,6 +50,22 @@ public class OrderController {
         responseData.setStatus(true);
         responseData.setMessages(List.of("sukses"));
         responseData.setData(seatAvailabelResponse);
+        return ResponseEntity.ok(responseData);
+    }
+
+    @PostMapping("create/{username}/{scheduleId}")
+    public ResponseEntity<ResponseData> createOrder(
+            @PathVariable("username") String username,
+            @PathVariable("scheduleId") Long scheduleId,
+            @RequestBody OrderRequest orderRequest){
+
+        ResponseData responseData = new ResponseData();
+        List<String> seats = new ArrayList<>(orderRequest.getSeatName());
+        orderService.createOrder(scheduleId, username, seats);
+        responseData.setStatusCode(StatusCode.OK);
+        responseData.setStatus(true);
+        responseData.getMessages().add("sukses");
+        responseData.setData(null);
         return ResponseEntity.ok(responseData);
     }
 }

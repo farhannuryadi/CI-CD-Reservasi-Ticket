@@ -6,6 +6,8 @@ import com.farhan.bioskopapi.dto.request.SearchStatusRequest;
 import com.farhan.bioskopapi.entity.FilmEntity;
 import com.farhan.bioskopapi.helper.utility.StatusCode;
 import com.farhan.bioskopapi.service.FilmService;
+import io.swagger.v3.oas.annotations.tags.Tag;
+import io.swagger.v3.oas.annotations.tags.Tags;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,6 +20,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/bioskop/api/films")
+@Tag(name = "Films")
 public class FilmController {
 
     private FilmService filmService;

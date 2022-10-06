@@ -7,6 +7,6 @@ import java.util.List;
 
 public interface OrderService {
 
-    OrderEntity save(OrderEntity order);
     List<OrderEntity> findByUsername(UserEntity user);
+    void createOrder(Long scheduleId, String username, List<String> seats);
 }
