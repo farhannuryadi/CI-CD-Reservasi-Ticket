@@ -2,6 +2,7 @@ package com.farhan.bioskopapi.controller;
 
 import com.farhan.bioskopapi.dto.response.ResponseData;
 import com.farhan.bioskopapi.entity.StudioEntity;
+import com.farhan.bioskopapi.helper.utility.StatusCode;
 import com.farhan.bioskopapi.service.StudioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -32,10 +33,12 @@ public class StudioController {
             for (ObjectError error: errors.getAllErrors()) {
                 responseData.getMessages().add(error.getDefaultMessage());
             }
+            responseData.setStatusCode(StatusCode.BAD_REQUEST);
             responseData.setStatus(false);
             responseData.setData(null);
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(responseData);
         }
+        responseData.setStatusCode(StatusCode.OK);
         responseData.setStatus(true);
         responseData.getMessages().add("sukses");
         responseData.setData(studioService.save(studioEntity));

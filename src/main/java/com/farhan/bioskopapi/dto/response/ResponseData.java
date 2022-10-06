@@ -9,6 +9,7 @@ import java.util.List;
 @Setter
 public class ResponseData<T> {
 
+    private Integer statusCode;
     private Boolean status;
     private List<String> messages = new ArrayList<>();
     private T data;

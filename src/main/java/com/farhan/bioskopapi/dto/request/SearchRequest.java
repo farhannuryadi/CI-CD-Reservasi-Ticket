@@ -7,7 +7,7 @@ import javax.validation.constraints.NotEmpty;
 
 @Getter
 @Setter
-public class SearchDto {
+public class SearchRequest {
 
     @NotEmpty(message = "searchKey is required")
     private String searchKey;

@@ -6,18 +6,19 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.math.BigDecimal;
-import java.util.Date;
+import java.time.LocalDate;
+import java.time.LocalTime;
 
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class ScheduleDto {
+public class ScheduleRequest {
 
     private String filmId;
     private Long studioId;
-    private Date tanggalTayang;
-    private Date jamMulai;
-    private Date jamSelesai;
+    private LocalDate tanggalTayang;
+    private LocalTime jamMulai;
+    private LocalTime jamSelesai;
     private BigDecimal harga;
 }

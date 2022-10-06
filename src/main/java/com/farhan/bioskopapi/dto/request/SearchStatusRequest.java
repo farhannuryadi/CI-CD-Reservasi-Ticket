@@ -5,7 +5,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class SearchStatusDto {
+public class SearchStatusRequest {
 
     private Boolean statusKey;
 }

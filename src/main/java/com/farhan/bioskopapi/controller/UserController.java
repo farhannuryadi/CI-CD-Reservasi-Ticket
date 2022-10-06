@@ -2,6 +2,7 @@ package com.farhan.bioskopapi.controller;
 
 import com.farhan.bioskopapi.dto.response.ResponseData;
 import com.farhan.bioskopapi.entity.UserEntity;
+import com.farhan.bioskopapi.helper.utility.StatusCode;
 import com.farhan.bioskopapi.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -31,12 +32,14 @@ public class UserController {
             for (ObjectError error : errors.getAllErrors()) {
                 responseData.getMessages().add(error.getDefaultMessage());
             }
+            responseData.setStatusCode(StatusCode.BAD_REQUEST);
             responseData.setStatus(false);
             responseData.setData(null);
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(responseData);
         }
-        responseData.getMessages().add("sukses");
+        responseData.setStatusCode(StatusCode.OK);
         responseData.setStatus(true);
+        responseData.getMessages().add("sukses");
         responseData.setData(userService.save(userEntity));
         return ResponseEntity.ok(responseData);
     }
