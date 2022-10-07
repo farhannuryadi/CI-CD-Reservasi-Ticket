@@ -5,10 +5,16 @@ import com.farhan.bioskopapi.dto.request.ScheduleRequest;
 import com.farhan.bioskopapi.dto.request.SearchRequest;
 import com.farhan.bioskopapi.entity.FilmEntity;
 import com.farhan.bioskopapi.entity.ScheduleEntity;
+import com.farhan.bioskopapi.entity.UserEntity;
 import com.farhan.bioskopapi.helper.utility.StatusCode;
 import com.farhan.bioskopapi.service.FilmService;
 import com.farhan.bioskopapi.service.ScheduleService;
 import com.farhan.bioskopapi.service.StudioService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -22,7 +28,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/bioskop/api/schedules")
-@Tag(name = "Schedule")
+@Tag(name = "Schedule", description = "Operation about schedule")
 public class ScheduleController {
 
     private ScheduleService scheduleService;
@@ -46,6 +52,14 @@ public class ScheduleController {
         this.studioService = studioService;
     }
 
+    @Operation(summary = "Add a new schedule and films")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "sukses", content = {
+                    @Content(mediaType = "application/json", schema = @Schema(implementation = ScheduleEntity.class))
+            }),
+            @ApiResponse(responseCode = "400", description = "Request Error Message"),
+            @ApiResponse(responseCode = "500", description = "Server Error Message")
+    })
     @PostMapping("/with/data")
     public ResponseEntity<ResponseData<ScheduleEntity>> create(@Valid @RequestBody ScheduleEntity scheduleEntity, Errors errors){
 
@@ -71,6 +85,14 @@ public class ScheduleController {
         return ResponseEntity.ok(responseData);
     }
 
+    @Operation(summary = "Add a new schdedule with id film")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "sukses", content = {
+                    @Content(mediaType = "application/json", schema = @Schema(implementation = ScheduleEntity.class))
+            }),
+            @ApiResponse(responseCode = "400", description = "Request Error Message"),
+            @ApiResponse(responseCode = "500", description = "Server Error Message")
+    })
     @PostMapping("/with/id")
     public ResponseEntity<ResponseData<ScheduleEntity>> create(@Valid @RequestBody ScheduleRequest scheduleRequest, Errors errors){
 
@@ -102,26 +124,66 @@ public class ScheduleController {
         return ResponseEntity.ok(responseData);
     }
 
+    @Operation(summary = "Get a schedule by its id")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "sukses", content = {
+                    @Content(mediaType = "application/json", schema = @Schema(implementation = ScheduleEntity.class))
+            }),
+            @ApiResponse(responseCode = "400", description = "Request Error Message"),
+            @ApiResponse(responseCode = "500", description = "Server Error Message")
+    })
     @GetMapping("/{id}")
     public ScheduleEntity findOne(@PathVariable("id") Long id){
         return scheduleService.findOne(id);
     }
 
+    @Operation(summary = "Get all schedules")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "sukses", content = {
+                    @Content(mediaType = "application/json", schema = @Schema(implementation = ScheduleEntity.class))
+            }),
+            @ApiResponse(responseCode = "400", description = "Request Error Message"),
+            @ApiResponse(responseCode = "500", description = "Server Error Message")
+    })
     @GetMapping
     public Iterable<ScheduleEntity> findAll(){
         return scheduleService.findAll();
     }
 
+    @Operation(summary = "Update a schedule")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "sukses", content = {
+                    @Content(mediaType = "application/json", schema = @Schema(implementation = ScheduleEntity.class))
+            }),
+            @ApiResponse(responseCode = "400", description = "Request Error Message"),
+            @ApiResponse(responseCode = "500", description = "Server Error Message")
+    })
     @PutMapping
     public ScheduleEntity update(@RequestBody ScheduleEntity scheduleEntity){
         return scheduleService.save(scheduleEntity);
     }
 
+    @Operation(summary = "Delete a schedule by its id")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "sukses", content = {
+                    @Content(mediaType = "application/json", schema = @Schema(implementation = ScheduleEntity.class))
+            }),
+            @ApiResponse(responseCode = "400", description = "Request Error Message"),
+            @ApiResponse(responseCode = "500", description = "Server Error Message")
+    })
     @DeleteMapping("/{id}")
     public void removeOne(@PathVariable("id") Long id){
         scheduleService.removeOne(id);
     }
 
+    @Operation(summary = "Get a schedule by its film name")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "sukses", content = {
+                    @Content(mediaType = "application/json", schema = @Schema(implementation = ScheduleEntity.class))
+            }),
+            @ApiResponse(responseCode = "400", description = "Request Error Message"),
+            @ApiResponse(responseCode = "500", description = "Server Error Message")
+    })
     @PostMapping("/film/name")
     public ResponseEntity<ResponseData<List<ScheduleEntity>>> findFilmName(@RequestBody SearchRequest filmName, Errors errors){
         ResponseData<List<ScheduleEntity>> responseData = new ResponseData<>();
