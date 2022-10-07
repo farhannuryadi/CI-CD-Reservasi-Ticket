@@ -1,10 +1,7 @@
 package com.farhan.bioskopapi.controller;
 
 import com.farhan.bioskopapi.service.InvoiceService;
-import com.farhan.bioskopapi.service.impl.InvoiceServiceImpl;
 import io.swagger.v3.oas.annotations.Operation;
-import io.swagger.v3.oas.annotations.media.Content;
-import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -16,7 +13,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletResponse;
 
 @RestController
@@ -44,7 +40,7 @@ public class InvoiceController {
                            @PathVariable("scheduleId") Long scheduleId) throws Exception {
         response.setContentType("application/pdf");
         response.setHeader("Content-Disposition", "attachment; fileName=\"invoice.pdf\"");
-        JasperPrint jasperPrint = invoiceService.generateJasperPrint(username, scheduleId);
+        JasperPrint jasperPrint = invoiceService.generateInvoice(username, scheduleId);
         JasperExportManager.exportReportToPdfStream(jasperPrint, response.getOutputStream());
     }
 }

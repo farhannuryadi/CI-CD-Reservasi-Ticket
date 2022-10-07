@@ -3,9 +3,11 @@ package com.farhan.bioskopapi.controller;
 import com.farhan.bioskopapi.dto.request.OrderRequest;
 import com.farhan.bioskopapi.dto.response.ResponseData;
 import com.farhan.bioskopapi.dto.response.SeatAvailabelResponse;
+import com.farhan.bioskopapi.entity.FilmEntity;
 import com.farhan.bioskopapi.entity.OrderEntity;
 import com.farhan.bioskopapi.entity.SeatEntity;
 import com.farhan.bioskopapi.entity.UserEntity;
+import com.farhan.bioskopapi.helper.utility.ErrorParsingUtility;
 import com.farhan.bioskopapi.helper.utility.StatusCode;
 import com.farhan.bioskopapi.service.OrderDetailService;
 import com.farhan.bioskopapi.service.OrderService;
@@ -18,9 +20,12 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -48,12 +53,25 @@ public class OrderController {
             @ApiResponse(responseCode = "200", description = "sukses", content = {
                     @Content(mediaType = "application/json", schema = @Schema(implementation = SeatEntity.class))
             }),
-            @ApiResponse(responseCode = "400", description = "Request Error Message"),
             @ApiResponse(responseCode = "500", description = "Server Error Message")
     })
     @GetMapping("/seat")
-    public List<SeatEntity> seat(){
-        return seatService.findAll();
+    public ResponseEntity<ResponseData<List<SeatEntity>>> seat(){
+        ResponseData<List<SeatEntity>> responseData = new ResponseData<>();
+
+        try {
+            responseData.setStatusCode(StatusCode.OK);
+            responseData.setStatus(true);
+            responseData.getMessages().add("sukses");
+            responseData.setData(seatService.findAll());
+            return ResponseEntity.ok(responseData);
+        }catch (Exception ex){
+            responseData.setStatusCode(StatusCode.INTERNAL_ERROR);
+            responseData.setStatus(false);
+            responseData.getMessages().add(ex.getMessage());
+            responseData.setData(seatService.findAll());
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(responseData);
+        }
     }
 
     @Operation(summary = "Get all seat is available")
@@ -65,40 +83,59 @@ public class OrderController {
             @ApiResponse(responseCode = "500", description = "Server Error Message")
     })
     @GetMapping("/seat/available/{scheduleId}")
-    public ResponseEntity<ResponseData<SeatAvailabelResponse>> seatAvailable(@PathVariable("scheduleId") Long scheduleId){
+    public ResponseEntity<ResponseData<SeatAvailabelResponse>> seatAvailable(@Valid @PathVariable("scheduleId") Long scheduleId, Errors errors){
         ResponseData<SeatAvailabelResponse> responseData= new ResponseData<>();
-        SeatAvailabelResponse seatAvailabelResponse = new SeatAvailabelResponse();
-        List<String> list =  seatService.findSeatAvailable(scheduleId);
-        seatAvailabelResponse.setSeatName(list);
-        responseData.setStatusCode(StatusCode.OK);
-        responseData.setStatus(true);
-        responseData.setMessages(List.of("sukses"));
-        responseData.setData(seatAvailabelResponse);
-        return ResponseEntity.ok(responseData);
+
+        if (errors.hasErrors()) {
+            responseData.setStatusCode(StatusCode.BAD_REQUEST);
+            responseData.setStatus(false);
+            responseData.setMessages(ErrorParsingUtility.parse(errors));
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(responseData);
+        }try {
+            SeatAvailabelResponse seatAvailabelResponse = new SeatAvailabelResponse();
+            List<String> list =  seatService.findSeatAvailable(scheduleId);
+            seatAvailabelResponse.setSeatName(list);
+            responseData.setStatusCode(StatusCode.OK);
+            responseData.setStatus(true);
+            responseData.setMessages(List.of("sukses"));
+            responseData.setData(seatAvailabelResponse);
+            return ResponseEntity.ok(responseData);
+        }catch (Exception ex){
+            responseData.setStatusCode(StatusCode.INTERNAL_ERROR);
+            responseData.setStatus(false);
+            responseData.getMessages().add(ex.getMessage());
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(responseData);
+        }
     }
 
     @Operation(summary = "Add a new order by username and scheduleId")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "sukses"),
-            @ApiResponse(responseCode = "400", description = "Request Error Message"),
+            @ApiResponse(responseCode = "200", description = "sukses", content = {
+                    @Content(mediaType = "application/json", schema = @Schema(implementation = OrderEntity.class))
+            }),
             @ApiResponse(responseCode = "500", description = "Server Error Message")
     })
     @PostMapping("create/{username}/{scheduleId}")
-    public ResponseEntity<ResponseData> createOrder(
-            @PathVariable("username") String username,
-            @PathVariable("scheduleId") Long scheduleId,
-            @RequestBody OrderRequest orderRequest){
+    public ResponseEntity<ResponseData> createOrder(@PathVariable("username") String username,
+                                                    @PathVariable("scheduleId") Long scheduleId,
+                                                    @RequestBody OrderRequest orderRequest){
 
         ResponseData responseData = new ResponseData();
         List<String> seats = new ArrayList<>(orderRequest.getSeatName());
 
-        orderService.createOrder(scheduleId, username, seats);
-        orderDetailService.createOrderDetail(seats, scheduleId, username);
+        try {
+            orderService.createOrder(scheduleId, username, seats);
+            orderDetailService.createOrderDetail(seats, scheduleId, username);
 
-        responseData.setStatusCode(StatusCode.OK);
-        responseData.setStatus(true);
-        responseData.getMessages().add("sukses");
-        responseData.setData(null);
-        return ResponseEntity.ok(responseData);
+            responseData.setStatusCode(StatusCode.OK);
+            responseData.setStatus(true);
+            responseData.getMessages().add("sukses");
+            return ResponseEntity.ok(responseData);
+        }catch (Exception ex){
+            responseData.setStatusCode(StatusCode.INTERNAL_ERROR);
+            responseData.setStatus(false);
+            responseData.getMessages().add(ex.getMessage());
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(responseData);
+        }
     }
 }

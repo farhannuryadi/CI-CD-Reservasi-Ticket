@@ -4,6 +4,8 @@ import com.farhan.bioskopapi.dto.response.ResponseData;
 import com.farhan.bioskopapi.dto.request.SearchRequest;
 import com.farhan.bioskopapi.dto.request.SearchStatusRequest;
 import com.farhan.bioskopapi.entity.FilmEntity;
+import com.farhan.bioskopapi.entity.StudioEntity;
+import com.farhan.bioskopapi.helper.utility.ErrorParsingUtility;
 import com.farhan.bioskopapi.helper.utility.StatusCode;
 import com.farhan.bioskopapi.service.FilmService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -49,20 +51,23 @@ public class FilmController {
         ResponseData<FilmEntity> responseData = new ResponseData<>();
 
         if (errors.hasErrors()) {
-            for (ObjectError error: errors.getAllErrors()) {
-                responseData.getMessages().add(error.getDefaultMessage());
-            }
             responseData.setStatusCode(StatusCode.BAD_REQUEST);
             responseData.setStatus(false);
-            responseData.setData(null);
+            responseData.setMessages(ErrorParsingUtility.parse(errors));
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(responseData);
         }
-
-        responseData.setStatusCode(StatusCode.OK);
-        responseData.setStatus(true);
-        responseData.getMessages().add("sukses");
-        responseData.setData(filmService.save(filmEntity));
-        return ResponseEntity.ok(responseData);
+        try {
+            responseData.setStatusCode(StatusCode.OK);
+            responseData.setStatus(true);
+            responseData.getMessages().add("sukses");
+            responseData.setData(filmService.save(filmEntity));
+            return ResponseEntity.ok(responseData);
+        }catch (Exception ex){
+            responseData.setStatusCode(StatusCode.INTERNAL_ERROR);
+            responseData.setStatus(false);
+            responseData.getMessages().add(ex.getMessage());
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(responseData);
+        }
     }
 
     @Operation(summary = "Get film by its id")
@@ -74,8 +79,27 @@ public class FilmController {
             @ApiResponse(responseCode = "500", description = "Server Error Message")
     })
     @GetMapping("/{id}")
-    public FilmEntity findOne(@PathVariable("id") String id){
-        return filmService.findOne(id);
+    public ResponseEntity<ResponseData<FilmEntity>> findOne(@Valid @PathVariable("id") String id, Errors errors){
+        ResponseData<FilmEntity> responseData = new ResponseData<>();
+
+        if (errors.hasErrors()) {
+            responseData.setStatusCode(StatusCode.BAD_REQUEST);
+            responseData.setStatus(false);
+            responseData.setMessages(ErrorParsingUtility.parse(errors));
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(responseData);
+        }
+        try {
+            responseData.setStatusCode(StatusCode.OK);
+            responseData.setStatus(true);
+            responseData.getMessages().add("sukses");
+            responseData.setData(filmService.findOne(id));
+            return ResponseEntity.ok(responseData);
+        }catch (Exception ex){
+            responseData.setStatusCode(StatusCode.INTERNAL_ERROR);
+            responseData.setStatus(false);
+            responseData.getMessages().add(ex.getMessage());
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(responseData);
+        }
     }
 
     @Operation(summary = "Get all films")
@@ -83,12 +107,23 @@ public class FilmController {
             @ApiResponse(responseCode = "200", description = "sukses", content = {
                     @Content(mediaType = "application/json", schema = @Schema(implementation = FilmEntity.class))
             }),
-            @ApiResponse(responseCode = "400", description = "Request Error Message"),
             @ApiResponse(responseCode = "500", description = "Server Error Message")
     })
     @GetMapping
-    public Iterable<FilmEntity> findAll(){
-        return filmService.findAll();
+    public ResponseEntity<ResponseData<Iterable<FilmEntity>>> findAll(){
+        ResponseData<Iterable<FilmEntity>> responseData = new ResponseData<>();
+        try{
+            responseData.setStatusCode(StatusCode.OK);
+            responseData.setStatus(true);
+            responseData.getMessages().add("sukses");
+            responseData.setData(filmService.findAll());
+            return ResponseEntity.ok(responseData);
+        }catch (Exception ex){
+            responseData.setStatusCode(StatusCode.INTERNAL_ERROR);
+            responseData.setStatus(false);
+            responseData.getMessages().add(ex.getMessage());
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(responseData);
+        }
     }
 
     @Operation(summary = "Update a film")
@@ -100,8 +135,27 @@ public class FilmController {
             @ApiResponse(responseCode = "500", description = "Server Error Message")
     })
     @PutMapping
-    public FilmEntity update(@RequestBody FilmEntity filmEntity){
-        return filmService.save(filmEntity);
+    public ResponseEntity<ResponseData<FilmEntity>> update(@Valid @RequestBody FilmEntity filmEntity, Errors errors){
+        ResponseData<FilmEntity> responseData = new ResponseData<>();
+
+        if (errors.hasErrors()) {
+            responseData.setStatusCode(StatusCode.BAD_REQUEST);
+            responseData.setStatus(false);
+            responseData.setMessages(ErrorParsingUtility.parse(errors));
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(responseData);
+        }
+        try {
+            responseData.setStatusCode(StatusCode.OK);
+            responseData.setStatus(true);
+            responseData.getMessages().add("sukses");
+            responseData.setData(filmService.save(filmEntity));
+            return ResponseEntity.ok(responseData);
+        }catch (Exception ex){
+            responseData.setStatusCode(StatusCode.INTERNAL_ERROR);
+            responseData.setStatus(false);
+            responseData.getMessages().add(ex.getMessage());
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(responseData);
+        }
     }
 
     @Operation(summary = "Get a film by its name")
@@ -113,8 +167,27 @@ public class FilmController {
             @ApiResponse(responseCode = "500", description = "Server Error Message")
     })
     @PostMapping("/search/name")
-    public FilmEntity getFilmByName(@RequestBody SearchRequest searchRequest){
-        return filmService.findByName(searchRequest.getSearchKey());
+    public ResponseEntity<ResponseData<FilmEntity>> getFilmByName(@Valid @RequestBody SearchRequest searchRequest, Errors errors){
+        ResponseData<FilmEntity> responseData = new ResponseData<>();
+
+        if (errors.hasErrors()) {
+            responseData.setStatusCode(StatusCode.BAD_REQUEST);
+            responseData.setStatus(false);
+            responseData.setMessages(ErrorParsingUtility.parse(errors));
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(responseData);
+        }
+        try {
+            responseData.setStatusCode(StatusCode.OK);
+            responseData.setStatus(true);
+            responseData.getMessages().add("sukses");
+            responseData.setData(filmService.findByName(searchRequest.getSearchKey()));
+            return ResponseEntity.ok(responseData);
+        }catch (Exception ex){
+            responseData.setStatusCode(StatusCode.INTERNAL_ERROR);
+            responseData.setStatus(false);
+            responseData.getMessages().add(ex.getMessage());
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(responseData);
+        }
     }
 
     @Operation(summary = "Get films show by its status")
@@ -126,20 +199,48 @@ public class FilmController {
             @ApiResponse(responseCode = "500", description = "Server Error Message")
     })
     @PostMapping("/search/status")
-    public List<FilmEntity> getFilmByStatus(@RequestBody SearchStatusRequest searchStatusRequest){
-        return filmService.findByStatus(searchStatusRequest.getStatusKey());
+    public ResponseEntity<ResponseData<List<FilmEntity>>> getFilmByStatus(@Valid @RequestBody SearchStatusRequest searchStatusRequest, Errors errors){
+        ResponseData<List<FilmEntity>> responseData = new ResponseData<>();
+
+        if (errors.hasErrors()) {
+            responseData.setStatusCode(StatusCode.BAD_REQUEST);
+            responseData.setStatus(false);
+            responseData.setMessages(ErrorParsingUtility.parse(errors));
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(responseData);
+        }
+        try {
+            responseData.setStatusCode(StatusCode.OK);
+            responseData.setStatus(true);
+            responseData.getMessages().add("sukses");
+            responseData.setData(filmService.findByStatus(searchStatusRequest.getStatusKey()));
+            return ResponseEntity.ok(responseData);
+        }catch (Exception ex){
+            responseData.setStatusCode(StatusCode.INTERNAL_ERROR);
+            responseData.setStatus(false);
+            responseData.getMessages().add(ex.getMessage());
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(responseData);
+        }
     }
 
     @Operation(summary = "delete a film by its id")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "sukses", content = {
-                    @Content(mediaType = "application/json", schema = @Schema(implementation = FilmEntity.class))
-            }),
-            @ApiResponse(responseCode = "400", description = "Request Error Message"),
+            @ApiResponse(responseCode = "200", description = "sukses"),
             @ApiResponse(responseCode = "500", description = "Server Error Message")
     })
     @DeleteMapping("/{id}")
-    public void removeOne(@PathVariable("id") String id){
-        filmService.removeOne(id);
+    public ResponseEntity<ResponseData> removeOne(@PathVariable("id") String id){
+        ResponseData responseData = new ResponseData();
+        try{
+            responseData.setStatusCode(StatusCode.OK);
+            responseData.setStatus(true);
+            responseData.getMessages().add("sukses");
+            filmService.removeOne(id);
+            return ResponseEntity.ok(responseData);
+        }catch (Exception ex){
+            responseData.setStatusCode(StatusCode.INTERNAL_ERROR);
+            responseData.setStatus(false);
+            responseData.getMessages().add(ex.getMessage());
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(responseData);
+        }
     }
 }
