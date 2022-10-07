@@ -4,5 +4,5 @@ import net.sf.jasperreports.engine.JasperPrint;
 
 public interface InvoiceService {
 
-    JasperPrint generateJasperPrint()throws Exception;
+    JasperPrint generateJasperPrint(String username, Long scheduleId)throws Exception;
 }

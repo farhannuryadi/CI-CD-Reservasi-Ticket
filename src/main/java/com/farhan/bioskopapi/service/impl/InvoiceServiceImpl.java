@@ -13,6 +13,8 @@ import javax.sql.DataSource;
 import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.HashMap;
+import java.util.Map;
 
 @Service
 public class InvoiceServiceImpl implements InvoiceService {
@@ -35,10 +37,13 @@ public class InvoiceServiceImpl implements InvoiceService {
     }
 
     @Override
-    public JasperPrint generateJasperPrint() throws Exception{
-        InputStream filInvoice = new ClassPathResource("invoice/Invoice_Ticket.jasper").getInputStream();
+    public JasperPrint generateJasperPrint(String username, Long scheduleId) throws Exception{
+        InputStream filInvoice = new ClassPathResource("invoice/Invoice.jasper").getInputStream();
         JasperReport jasperReport = (JasperReport) JRLoader.loadObject(filInvoice);
-        JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, null, getConnection());
+        Map<String, Object> params = new HashMap<>();
+        params.put("username", username);
+        params.put("scheduleId", scheduleId);
+        JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, params, getConnection());
         return jasperPrint;
     }
 }

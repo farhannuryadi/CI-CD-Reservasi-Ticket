@@ -10,6 +10,7 @@ import com.farhan.bioskopapi.service.OrderDetailService;
 import com.farhan.bioskopapi.service.OrderService;
 import com.farhan.bioskopapi.service.ScheduleService;
 import com.farhan.bioskopapi.service.SeatService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -19,6 +20,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/bioskop/api/orders")
+@Tag(name = "Order")
 public class OrderController {
 
     private OrderService orderService;

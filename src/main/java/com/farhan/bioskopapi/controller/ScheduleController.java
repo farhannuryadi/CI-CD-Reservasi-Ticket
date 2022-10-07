@@ -9,6 +9,7 @@ import com.farhan.bioskopapi.helper.utility.StatusCode;
 import com.farhan.bioskopapi.service.FilmService;
 import com.farhan.bioskopapi.service.ScheduleService;
 import com.farhan.bioskopapi.service.StudioService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -21,6 +22,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/bioskop/api/schedules")
+@Tag(name = "Schedule")
 public class ScheduleController {
 
     private ScheduleService scheduleService;
