@@ -15,12 +15,15 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.Errors;
 import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
+@CrossOrigin(origins = "*", maxAge = 3600)
+//@PreAuthorize("hasRole('MODERATOR') or hasRole('ADMIN')")
 @RestController
 @RequestMapping("/bioskop/api/studios")
 @Tag(name = "Studio", description = "Operation about studio")
@@ -75,14 +78,8 @@ public class StudioController {
             @ApiResponse(responseCode = "500", description = "Server Error Message")
     })
     @GetMapping("/{id}")
-    public ResponseEntity<ResponseData<StudioEntity>> findOne(@Valid @PathVariable("id") Long id, Errors errors){
+    public ResponseEntity<ResponseData<StudioEntity>> findOne(@PathVariable("id") Long id){
         ResponseData<StudioEntity> responseData = new ResponseData<>();
-        if (errors.hasErrors()) {
-            responseData.setStatusCode(StatusCode.BAD_REQUEST);
-            responseData.setStatus(false);
-            responseData.setMessages(ErrorParsingUtility.parse(errors));
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(responseData);
-        }
         try{
             responseData.setStatusCode(StatusCode.OK);
             responseData.setStatus(true);

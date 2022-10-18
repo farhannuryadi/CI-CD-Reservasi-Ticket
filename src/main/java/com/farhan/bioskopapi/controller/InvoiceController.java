@@ -32,7 +32,6 @@ public class InvoiceController {
     @Operation(summary = "Generate Invoice by username and scheduleId")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "sukses"),
-            @ApiResponse(responseCode = "400", description = "Request Error Message"),
             @ApiResponse(responseCode = "500", description = "Server Error Message")
     })
     @GetMapping("/generate/{username}/{scheduleId}")
