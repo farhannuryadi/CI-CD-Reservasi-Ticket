@@ -1,0 +1,56 @@
+package com.farhan.bioskopapi.service.impl;
+
+import com.farhan.bioskopapi.entity.OrderDetailEntity;
+import com.farhan.bioskopapi.entity.OrderEntity;
+import com.farhan.bioskopapi.repository.*;
+import com.farhan.bioskopapi.service.OrderDetailService;
+import com.farhan.bioskopapi.service.OrderService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
+import java.util.List;
+
+@Service
+public class OrderDetailServiceImpl implements OrderDetailService {
+
+    private OrderDetailRepository orderDetailRepository;
+    private OrderRepository orderRepository;
+    private SeatRepository seatRepository;
+    private StudioRepository studioRepository;
+    private ScheduleRepository scheduleRepository;
+
+    @Autowired
+    public OrderDetailServiceImpl(OrderDetailRepository orderDetailRepository, OrderRepository orderRepository,
+                                  SeatRepository seatRepository, StudioRepository studioRepository,
+                                  ScheduleRepository scheduleRepository) {
+        this.orderDetailRepository = orderDetailRepository;
+        this.orderRepository = orderRepository;
+        this.seatRepository = seatRepository;
+        this.studioRepository = studioRepository;
+        this.scheduleRepository = scheduleRepository;
+    }
+
+    @Override
+    public OrderDetailEntity save(OrderDetailEntity orderDetail) {
+        return orderDetailRepository.save(orderDetail);
+    }
+
+    @Override
+    public List<OrderDetailEntity> findByOrder(OrderEntity order) {
+        return orderDetailRepository.findByOrder(order);
+    }
+
+    @Override
+    public void createOrderDetail(List<String> seats, Long scheduleId, String username){
+        List<Long> seatId = new ArrayList<>();
+        Long orderId = orderRepository.findOrderIdByScheduleIdAndUsername(scheduleId, username);
+        Long studioId = scheduleRepository.findStudioIdByScheduleId(scheduleId);
+        seats.forEach(s -> {
+            seatId.add(seatRepository.findSeatIdByName(s));
+        });
+        seatId.forEach(idSeat -> {
+            orderDetailRepository.createOrderDetail(idSeat, scheduleId, studioId, orderId, username);
+        });
+    }
+}

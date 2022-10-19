@@ -28,7 +28,12 @@ public class SwaggerConfig {
                                  @Value("v1.0.0") String appVersion){
         return new OpenAPI()
                 .info(new Info().title(appTitle)
-                        .description("API yang berisi keperluan untuk reservasi ticket bioskop")
+                        .description("Ini adalah simple API Reservasi Ticket\n\n" +
+                                "API yang berisi keperluan untuk reservasi ticket bioskop\n" +
+                                "didalam API ini tedapat beberapa controller yang dapat digunakan, hasil akhir dari API ini adalah\n" +
+                                "untuk dapat megenerate invoice dari user yang memesan ticket, file akan berbentuk media file pdf \n\n" +
+                                "_Berikut contoh file yang akan di hasilkan click [here](https://drive.google.com/file/d/1VZiEgVidY1_RgSyayLKy5AAh6ZN8-MZX/view?usp=sharing)_." +
+                                " (contoh tersebut digenerate melalu endPoint /bioskop/api/invoice/generate/farhanryd6/3)")
                         .version(appVersion)
                         .license(new License()
                                 .name("Apcahe 2.0")

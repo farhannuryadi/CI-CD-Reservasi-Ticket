@@ -14,4 +14,7 @@ public interface ScheduleRepository extends JpaRepository<ScheduleEntity, Long> 
 
     @Query("SELECT s FROM ScheduleEntity s WHERE s.film = :film")
     List<ScheduleEntity> findByFilmName(FilmEntity film);
+
+    @Query(value = "SELECT schedule_id FROM schedules WHERE schedule_id = :schdeuleId", nativeQuery = true)
+    Long findStudioIdByScheduleId(Long schdeuleId);
 }
