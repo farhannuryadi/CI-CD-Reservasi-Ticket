@@ -11,6 +11,6 @@ public class ResponseData<T> {
 
     private Integer statusCode;
     private Boolean status;
-    private List<String> messages = new ArrayList<>();
+    private List<String> message = new ArrayList<>();
     private T data;
 }
