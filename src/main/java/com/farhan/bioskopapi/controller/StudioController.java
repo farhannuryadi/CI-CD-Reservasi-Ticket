@@ -71,18 +71,11 @@ public class StudioController {
             @ApiResponse(responseCode = "200", description = "sukses", content = {
                     @Content(mediaType = "application/json", schema = @Schema(implementation = StudioEntity.class))
             }),
-            @ApiResponse(responseCode = "400", description = "Request Error Message"),
             @ApiResponse(responseCode = "500", description = "Server Error Message")
     })
     @GetMapping("/{id}")
-    public ResponseEntity<ResponseData<StudioEntity>> findOne(@Valid @PathVariable("id") Long id, Errors errors){
+    public ResponseEntity<ResponseData<StudioEntity>> findOne(@PathVariable("id") Long id){
         ResponseData<StudioEntity> responseData = new ResponseData<>();
-        if (errors.hasErrors()) {
-            responseData.setStatusCode(StatusCode.BAD_REQUEST);
-            responseData.setStatus(false);
-            responseData.setMessages(ErrorParsingUtility.parse(errors));
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(responseData);
-        }
         try{
             responseData.setStatusCode(StatusCode.OK);
             responseData.setStatus(true);
