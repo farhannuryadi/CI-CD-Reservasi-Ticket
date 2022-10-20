@@ -2,7 +2,6 @@ package com.farhan.bioskopapi.controller;
 
 import com.farhan.bioskopapi.dto.response.ResponseData;
 import com.farhan.bioskopapi.entity.StudioEntity;
-import com.farhan.bioskopapi.entity.UserEntity;
 import com.farhan.bioskopapi.helper.utility.ErrorParsingUtility;
 import com.farhan.bioskopapi.helper.utility.StatusCode;
 import com.farhan.bioskopapi.service.StudioService;
@@ -16,7 +15,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.Errors;
-import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -49,19 +47,19 @@ public class StudioController {
         if (errors.hasErrors()) {
             responseData.setStatusCode(StatusCode.BAD_REQUEST);
             responseData.setStatus(false);
-            responseData.setMessages(ErrorParsingUtility.parse(errors));
+            responseData.setMessage(ErrorParsingUtility.parse(errors));
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(responseData);
         }
         try{
             responseData.setStatusCode(StatusCode.OK);
             responseData.setStatus(true);
-            responseData.getMessages().add("sukses");
+            responseData.getMessage().add("sukses");
             responseData.setData(studioService.save(studioEntity));
             return ResponseEntity.ok(responseData);
         }catch (Exception ex){
             responseData.setStatusCode(StatusCode.INTERNAL_ERROR);
             responseData.setStatus(false);
-            responseData.getMessages().add(ex.getMessage());
+            responseData.getMessage().add(ex.getMessage());
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(responseData);
         }
     }
@@ -79,13 +77,13 @@ public class StudioController {
         try{
             responseData.setStatusCode(StatusCode.OK);
             responseData.setStatus(true);
-            responseData.getMessages().add("sukses");
+            responseData.getMessage().add("sukses");
             responseData.setData(studioService.findOne(id));
             return ResponseEntity.ok(responseData);
         }catch (Exception ex){
             responseData.setStatusCode(StatusCode.INTERNAL_ERROR);
             responseData.setStatus(false);
-            responseData.getMessages().add(ex.getMessage());
+            responseData.getMessage().add(ex.getMessage());
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(responseData);
         }
     }
@@ -103,13 +101,13 @@ public class StudioController {
         try{
             responseData.setStatusCode(StatusCode.OK);
             responseData.setStatus(true);
-            responseData.getMessages().add("sukses");
+            responseData.getMessage().add("sukses");
             responseData.setData(studioService.findAll());
             return ResponseEntity.ok(responseData);
         }catch (Exception ex){
             responseData.setStatusCode(StatusCode.INTERNAL_ERROR);
             responseData.setStatus(false);
-            responseData.getMessages().add(ex.getMessage());
+            responseData.getMessage().add(ex.getMessage());
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(responseData);
         }
     }
@@ -130,19 +128,19 @@ public class StudioController {
         if (errors.hasErrors()) {
             responseData.setStatusCode(StatusCode.BAD_REQUEST);
             responseData.setStatus(false);
-            responseData.setMessages(ErrorParsingUtility.parse(errors));
+            responseData.setMessage(ErrorParsingUtility.parse(errors));
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(responseData);
         }
         try{
             responseData.setStatusCode(StatusCode.OK);
             responseData.setStatus(true);
-            responseData.getMessages().add("sukses");
+            responseData.getMessage().add("sukses");
             responseData.setData(studioService.save(studioEntity));
             return ResponseEntity.ok(responseData);
         }catch (Exception ex){
             responseData.setStatusCode(StatusCode.INTERNAL_ERROR);
             responseData.setStatus(false);
-            responseData.getMessages().add(ex.getMessage());
+            responseData.getMessage().add(ex.getMessage());
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(responseData);
         }
     }
@@ -158,13 +156,13 @@ public class StudioController {
         try{
             responseData.setStatusCode(StatusCode.OK);
             responseData.setStatus(true);
-            responseData.getMessages().add("sukses");
+            responseData.getMessage().add("sukses");
             studioService.removeOne(id);
             return ResponseEntity.ok(responseData);
         }catch (Exception ex){
             responseData.setStatusCode(StatusCode.INTERNAL_ERROR);
             responseData.setStatus(false);
-            responseData.getMessages().add(ex.getMessage());
+            responseData.getMessage().add(ex.getMessage());
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(responseData);
         }
     }

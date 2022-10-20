@@ -4,7 +4,6 @@ import com.farhan.bioskopapi.dto.response.ResponseData;
 import com.farhan.bioskopapi.dto.request.SearchRequest;
 import com.farhan.bioskopapi.dto.request.SearchStatusRequest;
 import com.farhan.bioskopapi.entity.FilmEntity;
-import com.farhan.bioskopapi.entity.StudioEntity;
 import com.farhan.bioskopapi.helper.utility.ErrorParsingUtility;
 import com.farhan.bioskopapi.helper.utility.StatusCode;
 import com.farhan.bioskopapi.service.FilmService;
@@ -14,12 +13,10 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
-import io.swagger.v3.oas.annotations.tags.Tags;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.Errors;
-import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -53,19 +50,19 @@ public class FilmController {
         if (errors.hasErrors()) {
             responseData.setStatusCode(StatusCode.BAD_REQUEST);
             responseData.setStatus(false);
-            responseData.setMessages(ErrorParsingUtility.parse(errors));
+            responseData.setMessage(ErrorParsingUtility.parse(errors));
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(responseData);
         }
         try {
             responseData.setStatusCode(StatusCode.OK);
             responseData.setStatus(true);
-            responseData.getMessages().add("sukses");
+            responseData.getMessage().add("sukses");
             responseData.setData(filmService.save(filmEntity));
             return ResponseEntity.ok(responseData);
         }catch (Exception ex){
             responseData.setStatusCode(StatusCode.INTERNAL_ERROR);
             responseData.setStatus(false);
-            responseData.getMessages().add(ex.getMessage());
+            responseData.getMessage().add(ex.getMessage());
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(responseData);
         }
     }
@@ -83,13 +80,13 @@ public class FilmController {
         try {
             responseData.setStatusCode(StatusCode.OK);
             responseData.setStatus(true);
-            responseData.getMessages().add("sukses");
+            responseData.getMessage().add("sukses");
             responseData.setData(filmService.findOne(id));
             return ResponseEntity.ok(responseData);
         }catch (Exception ex){
             responseData.setStatusCode(StatusCode.INTERNAL_ERROR);
             responseData.setStatus(false);
-            responseData.getMessages().add(ex.getMessage());
+            responseData.getMessage().add(ex.getMessage());
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(responseData);
         }
     }
@@ -107,13 +104,13 @@ public class FilmController {
         try{
             responseData.setStatusCode(StatusCode.OK);
             responseData.setStatus(true);
-            responseData.getMessages().add("sukses");
+            responseData.getMessage().add("sukses");
             responseData.setData(filmService.findAll());
             return ResponseEntity.ok(responseData);
         }catch (Exception ex){
             responseData.setStatusCode(StatusCode.INTERNAL_ERROR);
             responseData.setStatus(false);
-            responseData.getMessages().add(ex.getMessage());
+            responseData.getMessage().add(ex.getMessage());
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(responseData);
         }
     }
@@ -133,19 +130,19 @@ public class FilmController {
         if (errors.hasErrors()) {
             responseData.setStatusCode(StatusCode.BAD_REQUEST);
             responseData.setStatus(false);
-            responseData.setMessages(ErrorParsingUtility.parse(errors));
+            responseData.setMessage(ErrorParsingUtility.parse(errors));
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(responseData);
         }
         try {
             responseData.setStatusCode(StatusCode.OK);
             responseData.setStatus(true);
-            responseData.getMessages().add("sukses");
+            responseData.getMessage().add("sukses");
             responseData.setData(filmService.save(filmEntity));
             return ResponseEntity.ok(responseData);
         }catch (Exception ex){
             responseData.setStatusCode(StatusCode.INTERNAL_ERROR);
             responseData.setStatus(false);
-            responseData.getMessages().add(ex.getMessage());
+            responseData.getMessage().add(ex.getMessage());
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(responseData);
         }
     }
@@ -165,19 +162,19 @@ public class FilmController {
         if (errors.hasErrors()) {
             responseData.setStatusCode(StatusCode.BAD_REQUEST);
             responseData.setStatus(false);
-            responseData.setMessages(ErrorParsingUtility.parse(errors));
+            responseData.setMessage(ErrorParsingUtility.parse(errors));
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(responseData);
         }
         try {
             responseData.setStatusCode(StatusCode.OK);
             responseData.setStatus(true);
-            responseData.getMessages().add("sukses");
+            responseData.getMessage().add("sukses");
             responseData.setData(filmService.findByName(searchRequest.getSearchKey()));
             return ResponseEntity.ok(responseData);
         }catch (Exception ex){
             responseData.setStatusCode(StatusCode.INTERNAL_ERROR);
             responseData.setStatus(false);
-            responseData.getMessages().add(ex.getMessage());
+            responseData.getMessage().add(ex.getMessage());
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(responseData);
         }
     }
@@ -197,19 +194,19 @@ public class FilmController {
         if (errors.hasErrors()) {
             responseData.setStatusCode(StatusCode.BAD_REQUEST);
             responseData.setStatus(false);
-            responseData.setMessages(ErrorParsingUtility.parse(errors));
+            responseData.setMessage(ErrorParsingUtility.parse(errors));
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(responseData);
         }
         try {
             responseData.setStatusCode(StatusCode.OK);
             responseData.setStatus(true);
-            responseData.getMessages().add("sukses");
+            responseData.getMessage().add("sukses");
             responseData.setData(filmService.findByStatus(searchStatusRequest.getStatusKey()));
             return ResponseEntity.ok(responseData);
         }catch (Exception ex){
             responseData.setStatusCode(StatusCode.INTERNAL_ERROR);
             responseData.setStatus(false);
-            responseData.getMessages().add(ex.getMessage());
+            responseData.getMessage().add(ex.getMessage());
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(responseData);
         }
     }
@@ -225,13 +222,13 @@ public class FilmController {
         try{
             responseData.setStatusCode(StatusCode.OK);
             responseData.setStatus(true);
-            responseData.getMessages().add("sukses");
+            responseData.getMessage().add("sukses");
             filmService.removeOne(id);
             return ResponseEntity.ok(responseData);
         }catch (Exception ex){
             responseData.setStatusCode(StatusCode.INTERNAL_ERROR);
             responseData.setStatus(false);
-            responseData.getMessages().add(ex.getMessage());
+            responseData.getMessage().add(ex.getMessage());
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(responseData);
         }
     }

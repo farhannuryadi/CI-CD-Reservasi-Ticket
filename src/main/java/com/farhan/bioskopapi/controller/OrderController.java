@@ -3,11 +3,8 @@ package com.farhan.bioskopapi.controller;
 import com.farhan.bioskopapi.dto.request.OrderRequest;
 import com.farhan.bioskopapi.dto.response.ResponseData;
 import com.farhan.bioskopapi.dto.response.SeatAvailabelResponse;
-import com.farhan.bioskopapi.entity.FilmEntity;
 import com.farhan.bioskopapi.entity.OrderEntity;
 import com.farhan.bioskopapi.entity.SeatEntity;
-import com.farhan.bioskopapi.entity.UserEntity;
-import com.farhan.bioskopapi.helper.utility.ErrorParsingUtility;
 import com.farhan.bioskopapi.helper.utility.StatusCode;
 import com.farhan.bioskopapi.service.OrderDetailService;
 import com.farhan.bioskopapi.service.OrderService;
@@ -22,10 +19,8 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -62,13 +57,13 @@ public class OrderController {
         try {
             responseData.setStatusCode(StatusCode.OK);
             responseData.setStatus(true);
-            responseData.getMessages().add("sukses");
+            responseData.getMessage().add("sukses");
             responseData.setData(seatService.findAll());
             return ResponseEntity.ok(responseData);
         }catch (Exception ex){
             responseData.setStatusCode(StatusCode.INTERNAL_ERROR);
             responseData.setStatus(false);
-            responseData.getMessages().add(ex.getMessage());
+            responseData.getMessage().add(ex.getMessage());
             responseData.setData(seatService.findAll());
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(responseData);
         }
@@ -90,13 +85,13 @@ public class OrderController {
             seatAvailabelResponse.setSeatName(list);
             responseData.setStatusCode(StatusCode.OK);
             responseData.setStatus(true);
-            responseData.setMessages(List.of("sukses"));
+            responseData.setMessage(List.of("sukses"));
             responseData.setData(seatAvailabelResponse);
             return ResponseEntity.ok(responseData);
         }catch (Exception ex){
             responseData.setStatusCode(StatusCode.INTERNAL_ERROR);
             responseData.setStatus(false);
-            responseData.getMessages().add(ex.getMessage());
+            responseData.getMessage().add(ex.getMessage());
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(responseData);
         }
     }
@@ -122,12 +117,12 @@ public class OrderController {
 
             responseData.setStatusCode(StatusCode.OK);
             responseData.setStatus(true);
-            responseData.getMessages().add("sukses");
+            responseData.getMessage().add("sukses");
             return ResponseEntity.ok(responseData);
         }catch (Exception ex){
             responseData.setStatusCode(StatusCode.INTERNAL_ERROR);
             responseData.setStatus(false);
-            responseData.getMessages().add(ex.getMessage());
+            responseData.getMessage().add(ex.getMessage());
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(responseData);
         }
     }

@@ -5,7 +5,6 @@ import com.farhan.bioskopapi.dto.request.ScheduleRequest;
 import com.farhan.bioskopapi.dto.request.SearchRequest;
 import com.farhan.bioskopapi.entity.FilmEntity;
 import com.farhan.bioskopapi.entity.ScheduleEntity;
-import com.farhan.bioskopapi.entity.UserEntity;
 import com.farhan.bioskopapi.helper.utility.ErrorParsingUtility;
 import com.farhan.bioskopapi.helper.utility.StatusCode;
 import com.farhan.bioskopapi.service.FilmService;
@@ -21,7 +20,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.Errors;
-import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -68,7 +66,7 @@ public class ScheduleController {
         if (errors.hasErrors()) {
             responseData.setStatusCode(StatusCode.BAD_REQUEST);
             responseData.setStatus(false);
-            responseData.setMessages(ErrorParsingUtility.parse(errors));
+            responseData.setMessage(ErrorParsingUtility.parse(errors));
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(responseData);
         }
         try {
@@ -77,13 +75,13 @@ public class ScheduleController {
 
             responseData.setStatusCode(StatusCode.OK);
             responseData.setStatus(true);
-            responseData.getMessages().add("sukses");
+            responseData.getMessage().add("sukses");
             responseData.setData(scheduleService.save(scheduleEntity));
             return ResponseEntity.ok(responseData);
         }catch (Exception ex){
             responseData.setStatusCode(StatusCode.INTERNAL_ERROR);
             responseData.setStatus(false);
-            responseData.getMessages().add(ex.getMessage());
+            responseData.getMessage().add(ex.getMessage());
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(responseData);
         }
     }
@@ -103,7 +101,7 @@ public class ScheduleController {
         if ((errors.hasErrors()) || (studioService.findOne(scheduleRequest.getStudioId()) == null) || (filmService.findOne(scheduleRequest.getFilmId())) == null) {
             responseData.setStatusCode(StatusCode.BAD_REQUEST);
             responseData.setStatus(false);
-            responseData.setMessages(ErrorParsingUtility.parse(errors));
+            responseData.setMessage(ErrorParsingUtility.parse(errors));
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(responseData);
         }
         try {
@@ -118,13 +116,13 @@ public class ScheduleController {
 
             responseData.setStatusCode(StatusCode.OK);
             responseData.setStatus(true);
-            responseData.getMessages().add("sukses");
+            responseData.getMessage().add("sukses");
             responseData.setData(scheduleService.save(scheduleEntity));
             return ResponseEntity.ok(responseData);
         }catch (Exception ex){
             responseData.setStatusCode(StatusCode.INTERNAL_ERROR);
             responseData.setStatus(false);
-            responseData.getMessages().add(ex.getMessage());
+            responseData.getMessage().add(ex.getMessage());
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(responseData);
         }
     }
@@ -142,13 +140,13 @@ public class ScheduleController {
         try {
             responseData.setStatusCode(StatusCode.OK);
             responseData.setStatus(true);
-            responseData.getMessages().add("sukses");
+            responseData.getMessage().add("sukses");
             responseData.setData(scheduleService.findOne(id));
             return ResponseEntity.ok(responseData);
         }catch (Exception ex){
             responseData.setStatusCode(StatusCode.INTERNAL_ERROR);
             responseData.setStatus(false);
-            responseData.getMessages().add(ex.getMessage());
+            responseData.getMessage().add(ex.getMessage());
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(responseData);
         }
     }
@@ -166,13 +164,13 @@ public class ScheduleController {
         try{
             responseData.setStatusCode(StatusCode.OK);
             responseData.setStatus(true);
-            responseData.getMessages().add("sukses");
+            responseData.getMessage().add("sukses");
             responseData.setData(scheduleService.findAll());
             return ResponseEntity.ok(responseData);
         }catch (Exception ex){
             responseData.setStatusCode(StatusCode.INTERNAL_ERROR);
             responseData.setStatus(false);
-            responseData.getMessages().add(ex.getMessage());
+            responseData.getMessage().add(ex.getMessage());
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(responseData);
         }
     }
@@ -192,7 +190,7 @@ public class ScheduleController {
         if (errors.hasErrors()) {
             responseData.setStatusCode(StatusCode.BAD_REQUEST);
             responseData.setStatus(false);
-            responseData.setMessages(ErrorParsingUtility.parse(errors));
+            responseData.setMessage(ErrorParsingUtility.parse(errors));
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(responseData);
         }
         try {
@@ -201,13 +199,13 @@ public class ScheduleController {
 
             responseData.setStatusCode(StatusCode.OK);
             responseData.setStatus(true);
-            responseData.getMessages().add("sukses");
+            responseData.getMessage().add("sukses");
             responseData.setData(scheduleService.save(scheduleEntity));
             return ResponseEntity.ok(responseData);
         }catch (Exception ex){
             responseData.setStatusCode(StatusCode.INTERNAL_ERROR);
             responseData.setStatus(false);
-            responseData.getMessages().add(ex.getMessage());
+            responseData.getMessage().add(ex.getMessage());
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(responseData);
         }
     }
@@ -223,13 +221,13 @@ public class ScheduleController {
         try{
             responseData.setStatusCode(StatusCode.OK);
             responseData.setStatus(true);
-            responseData.getMessages().add("sukses");
+            responseData.getMessage().add("sukses");
             scheduleService.removeOne(id);
             return ResponseEntity.ok(responseData);
         }catch (Exception ex){
             responseData.setStatusCode(StatusCode.INTERNAL_ERROR);
             responseData.setStatus(false);
-            responseData.getMessages().add(ex.getMessage());
+            responseData.getMessage().add(ex.getMessage());
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(responseData);
         }
     }
@@ -248,20 +246,20 @@ public class ScheduleController {
         if (errors.hasErrors()) {
             responseData.setStatusCode(StatusCode.BAD_REQUEST);
             responseData.setStatus(false);
-            responseData.setMessages(ErrorParsingUtility.parse(errors));
+            responseData.setMessage(ErrorParsingUtility.parse(errors));
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(responseData);
         }
         try {
             responseData.setStatusCode(StatusCode.OK);
             responseData.setStatus(true);
-            responseData.getMessages().add("sukses");
+            responseData.getMessage().add("sukses");
             FilmEntity filmEntity = filmService.findByName(filmName.getSearchKey());
             responseData.setData(scheduleService.findByFilmName(filmEntity));
             return ResponseEntity.ok(responseData);
         }catch (Exception ex){
             responseData.setStatusCode(StatusCode.INTERNAL_ERROR);
             responseData.setStatus(false);
-            responseData.getMessages().add(ex.getMessage());
+            responseData.getMessage().add(ex.getMessage());
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(responseData);
         }
     }
