@@ -1,16 +1,23 @@
 package com.farhan.bioskopapi.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.Date;
 
 @Getter
 @Setter
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name = "schedules")
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
@@ -21,26 +28,25 @@ public class ScheduleEntity implements Serializable {
     @Column(name = "schedule_id")
     private Long id;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "film_id")
     private FilmEntity film;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "studio_id")
     private StudioEntity studio;
 
-    @Temporal(TemporalType.DATE)
-    @Column(nullable = false)
-    private Date tanggalTayang;
+    @Column(name = "show_date", nullable = false)
+    private LocalDate showDate;
 
-    @Temporal(TemporalType.TIME)
-    @Column(nullable = false)
-    private Date jamMulai;
+    @JsonFormat(pattern = "HH:mm", timezone = "GMT+7")
+    @Column(name = "start_time", nullable = false)
+    private LocalTime startTime;
 
-    @Temporal(TemporalType.TIME)
-    @Column(nullable = false)
-    private Date jamSelesai;
+    @JsonFormat(pattern = "HH:mm", timezone = "GMT+7")
+    @Column(name = "end_time", nullable = false)
+    private LocalTime endTime;
 
     @Column(nullable = false)
-    private BigDecimal harga;
+    private BigDecimal price;
 }

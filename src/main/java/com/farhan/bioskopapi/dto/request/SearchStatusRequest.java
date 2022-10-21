@@ -1,11 +1,11 @@
-package com.farhan.bioskopapi.dto;
+package com.farhan.bioskopapi.dto.request;
 
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
-public class SearchStatusDto {
+public class SearchStatusRequest {
 
     private Boolean statusKey;
 }

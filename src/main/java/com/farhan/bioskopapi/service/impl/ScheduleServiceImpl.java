@@ -1,11 +1,13 @@
 package com.farhan.bioskopapi.service.impl;
 
+import com.farhan.bioskopapi.entity.FilmEntity;
 import com.farhan.bioskopapi.entity.ScheduleEntity;
 import com.farhan.bioskopapi.repository.ScheduleRepository;
 import com.farhan.bioskopapi.service.ScheduleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -40,5 +42,10 @@ public class ScheduleServiceImpl implements ScheduleService {
     @Override
     public void removeOne(Long id) {
         scheduleRepository.deleteById(id);
+    }
+
+    @Override
+    public List<ScheduleEntity> findByFilmName(FilmEntity film) {
+        return scheduleRepository.findByFilmName(film);
     }
 }
