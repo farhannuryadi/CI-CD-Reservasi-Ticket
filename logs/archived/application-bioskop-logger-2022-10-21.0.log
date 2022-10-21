@@ -1,0 +1,24 @@
+2022-10-21 09:01:31,512 INFO org.springframework.boot.StartupInfoLogger [restartedMain] Starting BioskopApiApplication using Java 18.0.1.1 on DESKTOP-GP7DHUM with PID 8508 (C:\Users\Farha\OneDrive\Documents\SIB\bioskop-api\target\classes started by Farha in C:\Users\Farha\OneDrive\Documents\SIB\bioskop-api)
+2022-10-21 09:01:31,517 DEBUG org.springframework.boot.StartupInfoLogger [restartedMain] Running with Spring Boot v2.7.3, Spring v5.3.22
+2022-10-21 09:01:31,518 INFO org.springframework.boot.SpringApplication [restartedMain] No active profile set, falling back to 1 default profile: "default"
+2022-10-21 09:01:52,189 DEBUG org.springframework.web.filter.GenericFilterBean [restartedMain] Filter 'authenticationJwtTokenFilter' configured for use
+2022-10-21 09:01:59,544 INFO org.springframework.boot.StartupInfoLogger [restartedMain] Started BioskopApiApplication in 29.728 seconds (JVM running for 34.747)
+2022-10-21 09:05:06,876 INFO com.farhan.bioskopapi.controller.FilmController [http-nio-8080-exec-8] sukses get all films
+2022-10-21 09:06:57,494 INFO com.farhan.bioskopapi.controller.FilmController [http-nio-8080-exec-9] sukses find film by id : 2
+2022-10-21 09:07:29,766 WARN com.farhan.bioskopapi.controller.FilmController [http-nio-8080-exec-10] request invalid :[film name is required]
+2022-10-21 12:40:15,508 INFO org.springframework.boot.StartupInfoLogger [restartedMain] Starting BioskopApiApplication using Java 18.0.1.1 on DESKTOP-GP7DHUM with PID 11204 (C:\Users\Farha\OneDrive\Documents\SIB\bioskop-api\target\classes started by Farha in C:\Users\Farha\OneDrive\Documents\SIB\bioskop-api)
+2022-10-21 12:40:15,511 DEBUG org.springframework.boot.StartupInfoLogger [restartedMain] Running with Spring Boot v2.7.3, Spring v5.3.22
+2022-10-21 12:40:15,512 INFO org.springframework.boot.SpringApplication [restartedMain] No active profile set, falling back to 1 default profile: "default"
+2022-10-21 12:40:37,777 DEBUG org.springframework.web.filter.GenericFilterBean [restartedMain] Filter 'authenticationJwtTokenFilter' configured for use
+2022-10-21 12:40:42,662 INFO org.springframework.boot.StartupInfoLogger [restartedMain] Started BioskopApiApplication in 28.34 seconds (JVM running for 31.611)
+2022-10-21 12:41:40,964 INFO com.farhan.bioskopapi.controller.AuthController [http-nio-8080-exec-2] sukses login user : raflyiyeh123
+2022-10-21 12:42:25,848 INFO com.farhan.bioskopapi.controller.FilmController [http-nio-8080-exec-5] sukses get all films
+2022-10-21 12:44:50,238 INFO com.farhan.bioskopapi.controller.UserController [http-nio-8080-exec-1] delete user : tirtakrmh99
+2022-10-21 12:45:37,909 INFO com.farhan.bioskopapi.controller.AuthController [http-nio-8080-exec-3] new signup sukses user : tirtakrmh99
+2022-10-21 12:46:19,875 INFO com.farhan.bioskopapi.controller.AuthController [http-nio-8080-exec-5] sukses login user : tirtakrmh99
+2022-10-21 12:47:04,565 INFO com.farhan.bioskopapi.controller.FilmController [http-nio-8080-exec-6] sukses get all films
+2022-10-21 17:07:27,299 INFO org.springframework.boot.StartupInfoLogger [restartedMain] Starting BioskopApiApplication using Java 18.0.1.1 on DESKTOP-GP7DHUM with PID 12656 (C:\Users\Farha\OneDrive\Documents\SIB\bioskop-api\target\classes started by Farha in C:\Users\Farha\OneDrive\Documents\SIB\bioskop-api)
+2022-10-21 17:07:27,305 DEBUG org.springframework.boot.StartupInfoLogger [restartedMain] Running with Spring Boot v2.7.3, Spring v5.3.22
+2022-10-21 17:07:27,307 INFO org.springframework.boot.SpringApplication [restartedMain] No active profile set, falling back to 1 default profile: "default"
+2022-10-21 17:07:51,670 DEBUG org.springframework.web.filter.GenericFilterBean [restartedMain] Filter 'authenticationJwtTokenFilter' configured for use
+2022-10-21 17:08:00,069 INFO org.springframework.boot.StartupInfoLogger [restartedMain] Started BioskopApiApplication in 34.214 seconds (JVM running for 38.393)

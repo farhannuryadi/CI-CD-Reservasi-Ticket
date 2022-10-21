@@ -54,29 +54,21 @@ public class UserController {
         if (errors.hasErrors()) {
             responseData.setStatusCode(StatusCode.BAD_REQUEST);
             responseData.setStatus(false);
-<<<<<<< HEAD
-            responseData.setMessage(ErrorParsingUtility.parse(errors));
-=======
             responseData.setMessages(ErrorParsingUtility.parse(errors));
             logger.warn("error request : {}", ErrorParsingUtility.parse(errors));
->>>>>>> 9c72f9c2a2eef9973588130d549498053ae0eea0
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(responseData);
         }
         try{
             responseData.setStatusCode(StatusCode.OK);
             responseData.setStatus(true);
-            responseData.getMessage().add("sukses");
+            responseData.getMessages().add("sukses");
             responseData.setData(userService.save(userEntity));
             return ResponseEntity.ok(responseData);
         }catch (Exception ex){
             responseData.setStatusCode(StatusCode.INTERNAL_ERROR);
             responseData.setStatus(true);
-<<<<<<< HEAD
-            responseData.getMessage().add(ex.getMessage());
-=======
             responseData.getMessages().add(ex.getMessage());
             logger.warn("error from server : {}", ex.getMessage());
->>>>>>> 9c72f9c2a2eef9973588130d549498053ae0eea0
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(responseData);
         }
     }
@@ -94,18 +86,14 @@ public class UserController {
         try {
             responseData.setStatusCode(StatusCode.OK);
             responseData.setStatus(true);
-            responseData.getMessage().add("sukses");
+            responseData.getMessages().add("sukses");
             responseData.setData(userService.findOne(username));
             return ResponseEntity.ok(responseData);
         }catch (Exception ex){
             responseData.setStatusCode(StatusCode.BAD_REQUEST);
             responseData.setStatus(false);
-<<<<<<< HEAD
-            responseData.getMessage().add(ex.getMessage());
-=======
             responseData.getMessages().add(ex.getMessage());
             logger.warn("error from server : {}", ex.getMessage());
->>>>>>> 9c72f9c2a2eef9973588130d549498053ae0eea0
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(responseData);
         }
     }
@@ -123,18 +111,14 @@ public class UserController {
         try{
             responseData.setStatusCode(StatusCode.OK);
             responseData.setStatus(true);
-            responseData.getMessage().add("sukses");
+            responseData.getMessages().add("sukses");
             responseData.setData(userService.findAll());
             return ResponseEntity.ok(responseData);
         }catch (Exception ex){
             responseData.setStatusCode(StatusCode.INTERNAL_ERROR);
             responseData.setStatus(false);
-<<<<<<< HEAD
-            responseData.getMessage().add(ex.getMessage());
-=======
             responseData.getMessages().add(ex.getMessage());
             logger.warn("error from server : {}", ex.getMessage());
->>>>>>> 9c72f9c2a2eef9973588130d549498053ae0eea0
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(responseData);
         }
     }
@@ -155,29 +139,21 @@ public class UserController {
         if (errors.hasErrors()) {
             responseData.setStatusCode(StatusCode.BAD_REQUEST);
             responseData.setStatus(false);
-<<<<<<< HEAD
-            responseData.setMessage(ErrorParsingUtility.parse(errors));
-=======
             responseData.setMessages(ErrorParsingUtility.parse(errors));
             logger.warn("error request : {}", ErrorParsingUtility.parse(errors));
->>>>>>> 9c72f9c2a2eef9973588130d549498053ae0eea0
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(responseData);
         }
         try{
             responseData.setStatusCode(StatusCode.OK);
             responseData.setStatus(true);
-            responseData.getMessage().add("sukses");
+            responseData.getMessages().add("sukses");
             responseData.setData(userService.save(userEntity));
             return ResponseEntity.ok(responseData);
         }catch (Exception ex){
             responseData.setStatusCode(StatusCode.INTERNAL_ERROR);
             responseData.setStatus(true);
-<<<<<<< HEAD
-            responseData.getMessage().add(ex.getMessage());
-=======
             responseData.getMessages().add(ex.getMessage());
             logger.warn("error from server : {}", ex.getMessage());
->>>>>>> 9c72f9c2a2eef9973588130d549498053ae0eea0
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(responseData);
         }
     }
@@ -195,19 +171,15 @@ public class UserController {
         try{
             responseData.setStatusCode(StatusCode.OK);
             responseData.setStatus(true);
-            responseData.getMessage().add("sukses");
+            responseData.getMessages().add("sukses");
             userService.removeOne(username);
             logger.info("delete user : {}", username);
             return ResponseEntity.ok(responseData);
         }catch (Exception ex){
             responseData.setStatusCode(StatusCode.INTERNAL_ERROR);
             responseData.setStatus(false);
-<<<<<<< HEAD
-            responseData.getMessage().add(ex.getMessage());
-=======
             responseData.getMessages().add(ex.getMessage());
             logger.warn("error from server : {}", ex.getMessage());
->>>>>>> 9c72f9c2a2eef9973588130d549498053ae0eea0
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(responseData);
         }
     }
