@@ -23,6 +23,6 @@ public interface OrderRepository extends JpaRepository<OrderEntity, Long> {
     @Transactional
     @Modifying(clearAutomatically = true)
     @Query(value = "INSERT INTO orders (date_order, quantity, total_price, schedule_id, username)\n" +
-            "VALUES (CURRENT_TIMESTAMP, :quantity, :totalPrice, :scheduleId, :username)", nativeQuery = true)
-    void createOrder(int quantity, BigDecimal totalPrice, Long scheduleId, String username);
+            "VALUES (CURRENT_TIMESTAMP, :quantity, :totalPrice, :scheduleId, :userId)", nativeQuery = true)
+    void createOrder(int quantity, BigDecimal totalPrice, Long scheduleId, Long userId);
 }

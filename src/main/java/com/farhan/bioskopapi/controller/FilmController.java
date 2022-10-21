@@ -16,18 +16,25 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.validation.Valid;
 import java.util.List;
 
 @RestController
 @RequestMapping("/bioskop/api/films")
+@CrossOrigin(origins = "*", maxAge = 3600)
+@PreAuthorize("hasRole('ADMIN')")
 @Tag(name = "Film", description = "Operation about film")
 public class FilmController {
 
     private FilmService filmService;
+
+    public static final Logger logger = LoggerFactory.getLogger(FilmController.class);
 
     @Autowired
     public FilmController(FilmService filmService) {
@@ -50,7 +57,12 @@ public class FilmController {
         if (errors.hasErrors()) {
             responseData.setStatusCode(StatusCode.BAD_REQUEST);
             responseData.setStatus(false);
+<<<<<<< HEAD
             responseData.setMessage(ErrorParsingUtility.parse(errors));
+=======
+            responseData.setMessages(ErrorParsingUtility.parse(errors));
+            logger.warn("request invalid :{}", ErrorParsingUtility.parse(errors).toString());
+>>>>>>> 9c72f9c2a2eef9973588130d549498053ae0eea0
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(responseData);
         }
         try {
@@ -58,11 +70,17 @@ public class FilmController {
             responseData.setStatus(true);
             responseData.getMessage().add("sukses");
             responseData.setData(filmService.save(filmEntity));
+            logger.info("save film : {}", filmEntity.getFilmName());
             return ResponseEntity.ok(responseData);
         }catch (Exception ex){
             responseData.setStatusCode(StatusCode.INTERNAL_ERROR);
             responseData.setStatus(false);
+<<<<<<< HEAD
             responseData.getMessage().add(ex.getMessage());
+=======
+            responseData.getMessages().add(ex.getMessage());
+            logger.warn("error from server :{}", ex.getMessage());
+>>>>>>> 9c72f9c2a2eef9973588130d549498053ae0eea0
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(responseData);
         }
     }
@@ -75,18 +93,28 @@ public class FilmController {
             @ApiResponse(responseCode = "500", description = "Server Error Message")
     })
     @GetMapping("/{id}")
+<<<<<<< HEAD
     public ResponseEntity<ResponseData<FilmEntity>> findOne(@PathVariable("id") String id){
+=======
+    public ResponseEntity<ResponseData<FilmEntity>> findOne(@Valid @PathVariable("id") String id){
+>>>>>>> 9c72f9c2a2eef9973588130d549498053ae0eea0
         ResponseData<FilmEntity> responseData = new ResponseData<>();
         try {
             responseData.setStatusCode(StatusCode.OK);
             responseData.setStatus(true);
             responseData.getMessage().add("sukses");
             responseData.setData(filmService.findOne(id));
+            logger.info("sukses find film by id : {}", id);
             return ResponseEntity.ok(responseData);
         }catch (Exception ex){
             responseData.setStatusCode(StatusCode.INTERNAL_ERROR);
             responseData.setStatus(false);
+<<<<<<< HEAD
             responseData.getMessage().add(ex.getMessage());
+=======
+            responseData.getMessages().add(ex.getMessage());
+            logger.warn("error from server :{}", ex.getMessage());
+>>>>>>> 9c72f9c2a2eef9973588130d549498053ae0eea0
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(responseData);
         }
     }
@@ -98,6 +126,7 @@ public class FilmController {
             }),
             @ApiResponse(responseCode = "500", description = "Server Error Message")
     })
+    @PreAuthorize("hasRole('USER')")
     @GetMapping
     public ResponseEntity<ResponseData<Iterable<FilmEntity>>> findAll(){
         ResponseData<Iterable<FilmEntity>> responseData = new ResponseData<>();
@@ -106,11 +135,17 @@ public class FilmController {
             responseData.setStatus(true);
             responseData.getMessage().add("sukses");
             responseData.setData(filmService.findAll());
+            logger.info("sukses get all films");
             return ResponseEntity.ok(responseData);
         }catch (Exception ex){
             responseData.setStatusCode(StatusCode.INTERNAL_ERROR);
             responseData.setStatus(false);
+<<<<<<< HEAD
             responseData.getMessage().add(ex.getMessage());
+=======
+            responseData.getMessages().add(ex.getMessage());
+            logger.warn("error from server :{}", ex.getMessage());
+>>>>>>> 9c72f9c2a2eef9973588130d549498053ae0eea0
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(responseData);
         }
     }
@@ -130,7 +165,12 @@ public class FilmController {
         if (errors.hasErrors()) {
             responseData.setStatusCode(StatusCode.BAD_REQUEST);
             responseData.setStatus(false);
+<<<<<<< HEAD
             responseData.setMessage(ErrorParsingUtility.parse(errors));
+=======
+            responseData.setMessages(ErrorParsingUtility.parse(errors));
+            logger.warn("request invalid :{}", ErrorParsingUtility.parse(errors).toString());
+>>>>>>> 9c72f9c2a2eef9973588130d549498053ae0eea0
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(responseData);
         }
         try {
@@ -138,11 +178,17 @@ public class FilmController {
             responseData.setStatus(true);
             responseData.getMessage().add("sukses");
             responseData.setData(filmService.save(filmEntity));
+            logger.info("update film  : {}", filmEntity.getFilmName());
             return ResponseEntity.ok(responseData);
         }catch (Exception ex){
             responseData.setStatusCode(StatusCode.INTERNAL_ERROR);
             responseData.setStatus(false);
+<<<<<<< HEAD
             responseData.getMessage().add(ex.getMessage());
+=======
+            responseData.getMessages().add(ex.getMessage());
+            logger.warn("error from server :{}", ex.getMessage());
+>>>>>>> 9c72f9c2a2eef9973588130d549498053ae0eea0
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(responseData);
         }
     }
@@ -155,6 +201,7 @@ public class FilmController {
             @ApiResponse(responseCode = "400", description = "Request Error Message"),
             @ApiResponse(responseCode = "500", description = "Server Error Message")
     })
+    @PreAuthorize("hasRole('USER')")
     @PostMapping("/search/name")
     public ResponseEntity<ResponseData<FilmEntity>> getFilmByName(@Valid @RequestBody SearchRequest searchRequest, Errors errors){
         ResponseData<FilmEntity> responseData = new ResponseData<>();
@@ -162,7 +209,12 @@ public class FilmController {
         if (errors.hasErrors()) {
             responseData.setStatusCode(StatusCode.BAD_REQUEST);
             responseData.setStatus(false);
+<<<<<<< HEAD
             responseData.setMessage(ErrorParsingUtility.parse(errors));
+=======
+            responseData.setMessages(ErrorParsingUtility.parse(errors));
+            logger.warn("request invalid :{}", ErrorParsingUtility.parse(errors).toString());
+>>>>>>> 9c72f9c2a2eef9973588130d549498053ae0eea0
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(responseData);
         }
         try {
@@ -170,11 +222,17 @@ public class FilmController {
             responseData.setStatus(true);
             responseData.getMessage().add("sukses");
             responseData.setData(filmService.findByName(searchRequest.getSearchKey()));
+            logger.info("sukses get film name : {}", searchRequest.getSearchKey());
             return ResponseEntity.ok(responseData);
         }catch (Exception ex){
             responseData.setStatusCode(StatusCode.INTERNAL_ERROR);
             responseData.setStatus(false);
+<<<<<<< HEAD
             responseData.getMessage().add(ex.getMessage());
+=======
+            responseData.getMessages().add(ex.getMessage());
+            logger.warn("error from server :{}", ex.getMessage());
+>>>>>>> 9c72f9c2a2eef9973588130d549498053ae0eea0
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(responseData);
         }
     }
@@ -187,6 +245,7 @@ public class FilmController {
             @ApiResponse(responseCode = "400", description = "Request Error Message"),
             @ApiResponse(responseCode = "500", description = "Server Error Message")
     })
+    @PreAuthorize("hasRole('USER')")
     @PostMapping("/search/status")
     public ResponseEntity<ResponseData<List<FilmEntity>>> getFilmByStatus(@Valid @RequestBody SearchStatusRequest searchStatusRequest, Errors errors){
         ResponseData<List<FilmEntity>> responseData = new ResponseData<>();
@@ -194,7 +253,12 @@ public class FilmController {
         if (errors.hasErrors()) {
             responseData.setStatusCode(StatusCode.BAD_REQUEST);
             responseData.setStatus(false);
+<<<<<<< HEAD
             responseData.setMessage(ErrorParsingUtility.parse(errors));
+=======
+            responseData.setMessages(ErrorParsingUtility.parse(errors));
+            logger.warn("request invalid :{}", ErrorParsingUtility.parse(errors).toString());
+>>>>>>> 9c72f9c2a2eef9973588130d549498053ae0eea0
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(responseData);
         }
         try {
@@ -202,11 +266,17 @@ public class FilmController {
             responseData.setStatus(true);
             responseData.getMessage().add("sukses");
             responseData.setData(filmService.findByStatus(searchStatusRequest.getStatusKey()));
+            logger.info("sukses get film status : {}", searchStatusRequest.getStatusKey());
             return ResponseEntity.ok(responseData);
         }catch (Exception ex){
             responseData.setStatusCode(StatusCode.INTERNAL_ERROR);
             responseData.setStatus(false);
+<<<<<<< HEAD
             responseData.getMessage().add(ex.getMessage());
+=======
+            responseData.getMessages().add(ex.getMessage());
+            logger.warn("error from server :{}", ex.getMessage());
+>>>>>>> 9c72f9c2a2eef9973588130d549498053ae0eea0
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(responseData);
         }
     }
@@ -224,11 +294,17 @@ public class FilmController {
             responseData.setStatus(true);
             responseData.getMessage().add("sukses");
             filmService.removeOne(id);
+            logger.info("sukses remove film by id : {}", id);
             return ResponseEntity.ok(responseData);
         }catch (Exception ex){
             responseData.setStatusCode(StatusCode.INTERNAL_ERROR);
             responseData.setStatus(false);
+<<<<<<< HEAD
             responseData.getMessage().add(ex.getMessage());
+=======
+            responseData.getMessages().add(ex.getMessage());
+            logger.warn("error from server :{}", ex.getMessage());
+>>>>>>> 9c72f9c2a2eef9973588130d549498053ae0eea0
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(responseData);
         }
     }

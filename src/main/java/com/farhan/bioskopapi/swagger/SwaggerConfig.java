@@ -24,6 +24,17 @@ public class SwaggerConfig {
     }
 
     @Bean
+    public GroupedOpenApi auth(){
+        String paths[] = {"/api/auth/**"};
+        String packagesToScan[] = {"com.farhan.bioskopapi.controller"};
+        return GroupedOpenApi.builder()
+                .group("authentication")
+                .pathsToMatch(paths)
+                .packagesToScan(packagesToScan)
+                .build();
+    }
+
+    @Bean
     public OpenAPI customOpenAPI(@Value("Reservasi Ticket API") String appTitle,
                                  @Value("v1.0.0") String appVersion){
         return new OpenAPI()

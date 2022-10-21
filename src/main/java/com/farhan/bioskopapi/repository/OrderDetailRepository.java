@@ -25,6 +25,6 @@ public interface OrderDetailRepository extends JpaRepository<OrderDetailEntity, 
     @Transactional
     @Modifying(clearAutomatically = true)
     @Query(value = "INSERT INTO order_detail (seat_id, schedule_id, studio_id, order_id, username)\n" +
-            "VALUES (:seatId, :scheduleId, :studioId, :orderId, :username)", nativeQuery = true)
-    void createOrderDetail(Long seatId, Long scheduleId, Long studioId, Long orderId, String username);
+            "VALUES (:seatId, :scheduleId, :studioId, :orderId, :userId)", nativeQuery = true)
+    void createOrderDetail(Long seatId, Long scheduleId, Long studioId, Long orderId, Long userId);
 }

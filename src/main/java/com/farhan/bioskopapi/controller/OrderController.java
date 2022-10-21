@@ -16,18 +16,29 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+<<<<<<< HEAD
 import org.springframework.web.bind.annotation.*;
 
+=======
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.web.bind.annotation.*;
+>>>>>>> 9c72f9c2a2eef9973588130d549498053ae0eea0
 import java.util.ArrayList;
 import java.util.List;
 
 @RestController
 @RequestMapping("/bioskop/api/orders")
+@CrossOrigin(origins = "*", maxAge = 3600)
+@PreAuthorize("hasRole('USER') or hasRole('USER')")
 @Tag(name = "Order", description = "Everything about order")
 public class OrderController {
+
+    public static final Logger logger = LoggerFactory.getLogger(OrderController.class);
 
     private OrderService orderService;
     private OrderDetailService orderDetailService;
@@ -53,18 +64,19 @@ public class OrderController {
     @GetMapping("/seat")
     public ResponseEntity<ResponseData<List<SeatEntity>>> seat(){
         ResponseData<List<SeatEntity>> responseData = new ResponseData<>();
-
         try {
             responseData.setStatusCode(StatusCode.OK);
             responseData.setStatus(true);
             responseData.getMessage().add("sukses");
             responseData.setData(seatService.findAll());
+            logger.info("sukses get all seats");
             return ResponseEntity.ok(responseData);
         }catch (Exception ex){
             responseData.setStatusCode(StatusCode.INTERNAL_ERROR);
             responseData.setStatus(false);
             responseData.getMessage().add(ex.getMessage());
             responseData.setData(seatService.findAll());
+            logger.warn("error get all seat cause server :{}", ex.getMessage());
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(responseData);
         }
     }
@@ -87,11 +99,17 @@ public class OrderController {
             responseData.setStatus(true);
             responseData.setMessage(List.of("sukses"));
             responseData.setData(seatAvailabelResponse);
+            logger.info("call seat available from schedule : {}", scheduleId);
             return ResponseEntity.ok(responseData);
         }catch (Exception ex){
             responseData.setStatusCode(StatusCode.INTERNAL_ERROR);
             responseData.setStatus(false);
+<<<<<<< HEAD
             responseData.getMessage().add(ex.getMessage());
+=======
+            responseData.getMessages().add(ex.getMessage());
+            logger.warn("error from server : {}", ex.getMessage());
+>>>>>>> 9c72f9c2a2eef9973588130d549498053ae0eea0
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(responseData);
         }
     }
@@ -117,12 +135,22 @@ public class OrderController {
 
             responseData.setStatusCode(StatusCode.OK);
             responseData.setStatus(true);
+<<<<<<< HEAD
             responseData.getMessage().add("sukses");
+=======
+            responseData.getMessages().add("sukses");
+            logger.info("user : {}, create order from schedule : {}, for seat : {}", username, scheduleId, seats);
+>>>>>>> 9c72f9c2a2eef9973588130d549498053ae0eea0
             return ResponseEntity.ok(responseData);
         }catch (Exception ex){
             responseData.setStatusCode(StatusCode.INTERNAL_ERROR);
             responseData.setStatus(false);
+<<<<<<< HEAD
             responseData.getMessage().add(ex.getMessage());
+=======
+            responseData.getMessages().add(ex.getMessage());
+            logger.warn("error from server : {}", ex.getMessage());
+>>>>>>> 9c72f9c2a2eef9973588130d549498053ae0eea0
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(responseData);
         }
     }

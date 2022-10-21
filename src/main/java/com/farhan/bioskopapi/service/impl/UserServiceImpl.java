@@ -27,7 +27,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserEntity findOne(String username) {
-        Optional<UserEntity> user = userRepository.findById(username);
+        Optional<UserEntity> user = userRepository.findByUsername(username);
         if (user.isEmpty()) {
             return null;
         }
@@ -41,6 +41,10 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void removeOne(String username) {
-        userRepository.deleteById(username);
+        Optional<UserEntity> user = userRepository.findByUsername(username);
+        UserEntity userDelete;
+        if (user.isPresent()) {
+            userRepository.deleteById(user.get().getId());
+        }
     }
 }
