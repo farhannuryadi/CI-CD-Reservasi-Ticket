@@ -1,8 +1,6 @@
 package com.farhan.bioskopapi.controller;
 
 import com.farhan.bioskopapi.dto.response.ResponseData;
-import com.farhan.bioskopapi.entity.FilmEntity;
-import com.farhan.bioskopapi.entity.StudioEntity;
 import com.farhan.bioskopapi.entity.UserEntity;
 import com.farhan.bioskopapi.helper.utility.ErrorParsingUtility;
 import com.farhan.bioskopapi.helper.utility.StatusCode;
@@ -13,18 +11,24 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.Errors;
-import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 
 @RestController
 @RequestMapping("/bioskop/api/users")
+@CrossOrigin(origins = "*", maxAge = 3600)
+@PreAuthorize("hasRole('ADMIN')")
 @Tag(name = "User", description = "Operation about user")
 public class UserController {
+
+    public static final Logger logger = LoggerFactory.getLogger(UserEntity.class);
 
     private UserService userService;
 
@@ -33,6 +37,7 @@ public class UserController {
         this.userService = userService;
     }
 
+    //add user sekarang lewat AuthController
     @Operation(summary = "Add a new user")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "sukses", content = {
@@ -50,6 +55,7 @@ public class UserController {
             responseData.setStatusCode(StatusCode.BAD_REQUEST);
             responseData.setStatus(false);
             responseData.setMessages(ErrorParsingUtility.parse(errors));
+            logger.warn("error request : {}", ErrorParsingUtility.parse(errors));
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(responseData);
         }
         try{
@@ -62,6 +68,7 @@ public class UserController {
             responseData.setStatusCode(StatusCode.INTERNAL_ERROR);
             responseData.setStatus(true);
             responseData.getMessages().add(ex.getMessage());
+            logger.warn("error from server : {}", ex.getMessage());
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(responseData);
         }
     }
@@ -86,6 +93,7 @@ public class UserController {
             responseData.setStatusCode(StatusCode.BAD_REQUEST);
             responseData.setStatus(false);
             responseData.getMessages().add(ex.getMessage());
+            logger.warn("error from server : {}", ex.getMessage());
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(responseData);
         }
     }
@@ -110,6 +118,7 @@ public class UserController {
             responseData.setStatusCode(StatusCode.INTERNAL_ERROR);
             responseData.setStatus(false);
             responseData.getMessages().add(ex.getMessage());
+            logger.warn("error from server : {}", ex.getMessage());
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(responseData);
         }
     }
@@ -122,6 +131,7 @@ public class UserController {
             @ApiResponse(responseCode = "400", description = "Request Error Message"),
             @ApiResponse(responseCode = "500", description = "Server Error Message")
     })
+    @PreAuthorize("hasRole('USER')")
     @PutMapping
     public ResponseEntity<ResponseData<UserEntity>> update(@Valid @RequestBody UserEntity userEntity, Errors errors){
         ResponseData<UserEntity> responseData = new ResponseData<>();
@@ -130,6 +140,7 @@ public class UserController {
             responseData.setStatusCode(StatusCode.BAD_REQUEST);
             responseData.setStatus(false);
             responseData.setMessages(ErrorParsingUtility.parse(errors));
+            logger.warn("error request : {}", ErrorParsingUtility.parse(errors));
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(responseData);
         }
         try{
@@ -142,6 +153,7 @@ public class UserController {
             responseData.setStatusCode(StatusCode.INTERNAL_ERROR);
             responseData.setStatus(true);
             responseData.getMessages().add(ex.getMessage());
+            logger.warn("error from server : {}", ex.getMessage());
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(responseData);
         }
     }
@@ -151,6 +163,7 @@ public class UserController {
             @ApiResponse(responseCode = "200", description = "sukses"),
             @ApiResponse(responseCode = "500", description = "Server Error Message")
     })
+    @PreAuthorize("hasRole('USER')")
     @DeleteMapping("/{username}")
     public ResponseEntity<ResponseData> removeOne(@PathVariable("username") String username){
         ResponseData responseData = new ResponseData();
@@ -160,11 +173,13 @@ public class UserController {
             responseData.setStatus(true);
             responseData.getMessages().add("sukses");
             userService.removeOne(username);
+            logger.info("delete user : {}", username);
             return ResponseEntity.ok(responseData);
         }catch (Exception ex){
             responseData.setStatusCode(StatusCode.INTERNAL_ERROR);
             responseData.setStatus(false);
             responseData.getMessages().add(ex.getMessage());
+            logger.warn("error from server : {}", ex.getMessage());
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(responseData);
         }
     }
