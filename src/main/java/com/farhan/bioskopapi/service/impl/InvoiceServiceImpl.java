@@ -38,7 +38,7 @@ public class InvoiceServiceImpl implements InvoiceService {
 
     @Override
     public JasperPrint generateInvoice(String username, Long scheduleId) throws Exception{
-        InputStream filInvoice = new ClassPathResource("invoice/Invoice.jasper").getInputStream();
+        InputStream filInvoice = new ClassPathResource("invoice/InvoiceCh6.jasper").getInputStream();
         JasperReport jasperReport = (JasperReport) JRLoader.loadObject(filInvoice);
         Map<String, Object> params = new HashMap<>();
         params.put("username", username);
