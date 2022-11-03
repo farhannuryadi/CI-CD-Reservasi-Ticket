@@ -23,8 +23,8 @@ public class InvoiceController {
 
     public static final Logger logger = LoggerFactory.getLogger(InvoiceController.class);
 
-    private InvoiceService invoiceService;
-    private HttpServletResponse response;
+    private final InvoiceService invoiceService;
+    private final HttpServletResponse response;
 
     @Autowired
     public InvoiceController(InvoiceService invoiceService, HttpServletResponse response) {

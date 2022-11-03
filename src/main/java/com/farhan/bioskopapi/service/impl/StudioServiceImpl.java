@@ -13,7 +13,7 @@ import java.util.Optional;
 @Transactional
 public class StudioServiceImpl implements StudioService {
 
-    private StudioRepository studioRepository;
+    private final StudioRepository studioRepository;
 
     @Autowired
     public StudioServiceImpl(StudioRepository studioRepository) {

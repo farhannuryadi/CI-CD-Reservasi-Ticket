@@ -1,6 +1,8 @@
 package com.farhan.bioskopapi.controller;
 
+import com.farhan.bioskopapi.dto.request.SignupRequest;
 import com.farhan.bioskopapi.dto.response.ResponseData;
+import com.farhan.bioskopapi.dto.response.UserResponse;
 import com.farhan.bioskopapi.entity.UserEntity;
 import com.farhan.bioskopapi.helper.utility.ErrorParsingUtility;
 import com.farhan.bioskopapi.helper.utility.StatusCode;
@@ -17,9 +19,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
+
+import static com.farhan.bioskopapi.helper.utility.StatusMsg.ERROR_SERVER;
+import static com.farhan.bioskopapi.helper.utility.StatusMsg.SUCCSESS;
 
 @RestController
 @RequestMapping("/bioskop/api/users")
@@ -28,9 +34,11 @@ import javax.validation.Valid;
 @Tag(name = "User", description = "Operation about user")
 public class UserController {
 
-    public static final Logger logger = LoggerFactory.getLogger(UserEntity.class);
+    public static final Logger logger = LoggerFactory.getLogger(UserController.class);
 
-    private UserService userService;
+    private final UserService userService;
+    @Autowired
+    PasswordEncoder encoder;
 
     @Autowired
     public UserController(UserService userService) {
@@ -47,9 +55,9 @@ public class UserController {
             @ApiResponse(responseCode = "500", description = "Server Error Message")
     })
     @PostMapping
-    public ResponseEntity<ResponseData<UserEntity>> create(@Valid @RequestBody UserEntity userEntity, Errors errors){
+    public ResponseEntity<ResponseData<UserResponse>> create(@Valid @RequestBody SignupRequest signupRequest, Errors errors){
 
-        ResponseData<UserEntity> responseData = new ResponseData<>();
+        ResponseData<UserResponse> responseData = new ResponseData<>();
 
         if (errors.hasErrors()) {
             responseData.setStatusCode(StatusCode.BAD_REQUEST);
@@ -59,16 +67,24 @@ public class UserController {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(responseData);
         }
         try{
+            UserEntity userEntity = new UserEntity(signupRequest.getUsername(),
+                signupRequest.getFullName(),
+                signupRequest.getAddress(),
+                signupRequest.getEmail(),
+                encoder.encode(signupRequest.getPassword()));
+            UserEntity user = userService.save(userEntity);
+            UserResponse userResponse = new UserResponse(user.getId(), user.getUsername(),
+                    user.getFullName(), user.getAddress(), user.getEmail());
             responseData.setStatusCode(StatusCode.OK);
             responseData.setStatus(true);
-            responseData.getMessages().add("sukses");
-            responseData.setData(userService.save(userEntity));
+            responseData.getMessages().add(SUCCSESS);
+            responseData.setData(userResponse);
             return ResponseEntity.ok(responseData);
         }catch (Exception ex){
             responseData.setStatusCode(StatusCode.INTERNAL_ERROR);
             responseData.setStatus(true);
             responseData.getMessages().add(ex.getMessage());
-            logger.warn("error from server : {}", ex.getMessage());
+            logger.warn(ERROR_SERVER, ex.getMessage());
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(responseData);
         }
     }
@@ -86,14 +102,14 @@ public class UserController {
         try {
             responseData.setStatusCode(StatusCode.OK);
             responseData.setStatus(true);
-            responseData.getMessages().add("sukses");
+            responseData.getMessages().add(SUCCSESS);
             responseData.setData(userService.findOne(username));
             return ResponseEntity.ok(responseData);
         }catch (Exception ex){
             responseData.setStatusCode(StatusCode.BAD_REQUEST);
             responseData.setStatus(false);
             responseData.getMessages().add(ex.getMessage());
-            logger.warn("error from server : {}", ex.getMessage());
+            logger.warn(ERROR_SERVER, ex.getMessage());
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(responseData);
         }
     }
@@ -111,14 +127,14 @@ public class UserController {
         try{
             responseData.setStatusCode(StatusCode.OK);
             responseData.setStatus(true);
-            responseData.getMessages().add("sukses");
+            responseData.getMessages().add(SUCCSESS);
             responseData.setData(userService.findAll());
             return ResponseEntity.ok(responseData);
         }catch (Exception ex){
             responseData.setStatusCode(StatusCode.INTERNAL_ERROR);
             responseData.setStatus(false);
             responseData.getMessages().add(ex.getMessage());
-            logger.warn("error from server : {}", ex.getMessage());
+            logger.warn(ERROR_SERVER, ex.getMessage());
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(responseData);
         }
     }
@@ -133,8 +149,8 @@ public class UserController {
     })
     @PreAuthorize("hasRole('USER')")
     @PutMapping
-    public ResponseEntity<ResponseData<UserEntity>> update(@Valid @RequestBody UserEntity userEntity, Errors errors){
-        ResponseData<UserEntity> responseData = new ResponseData<>();
+    public ResponseEntity<ResponseData<UserResponse>> update(@Valid @RequestBody SignupRequest signupRequest, Errors errors){
+        ResponseData<UserResponse> responseData = new ResponseData<>();
 
         if (errors.hasErrors()) {
             responseData.setStatusCode(StatusCode.BAD_REQUEST);
@@ -144,16 +160,25 @@ public class UserController {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(responseData);
         }
         try{
+            UserEntity userEntity = new UserEntity(signupRequest.getUsername(),
+                    signupRequest.getFullName(),
+                    signupRequest.getAddress(),
+                    signupRequest.getEmail(),
+                    encoder.encode(signupRequest.getPassword()));
+            UserEntity user = userService.save(userEntity);
+            UserResponse userResponse = new UserResponse(user.getId(), user.getUsername(),
+                    user.getFullName(), user.getAddress(), user.getEmail());
             responseData.setStatusCode(StatusCode.OK);
             responseData.setStatus(true);
-            responseData.getMessages().add("sukses");
-            responseData.setData(userService.save(userEntity));
+            responseData.getMessages().add(SUCCSESS);
+            responseData.setData(userResponse);
+            logger.info("sukses update user id : {}", userEntity.getId());
             return ResponseEntity.ok(responseData);
         }catch (Exception ex){
             responseData.setStatusCode(StatusCode.INTERNAL_ERROR);
             responseData.setStatus(true);
             responseData.getMessages().add(ex.getMessage());
-            logger.warn("error from server : {}", ex.getMessage());
+            logger.warn(ERROR_SERVER, ex.getMessage());
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(responseData);
         }
     }
@@ -165,13 +190,13 @@ public class UserController {
     })
     @PreAuthorize("hasRole('USER')")
     @DeleteMapping("/{username}")
-    public ResponseEntity<ResponseData> removeOne(@PathVariable("username") String username){
-        ResponseData responseData = new ResponseData();
+    public ResponseEntity<ResponseData<String>> removeOne(@PathVariable("username") String username){
+        ResponseData<String> responseData = new ResponseData<>();
 
         try{
             responseData.setStatusCode(StatusCode.OK);
             responseData.setStatus(true);
-            responseData.getMessages().add("sukses");
+            responseData.getMessages().add(SUCCSESS);
             userService.removeOne(username);
             logger.info("delete user : {}", username);
             return ResponseEntity.ok(responseData);
@@ -179,7 +204,7 @@ public class UserController {
             responseData.setStatusCode(StatusCode.INTERNAL_ERROR);
             responseData.setStatus(false);
             responseData.getMessages().add(ex.getMessage());
-            logger.warn("error from server : {}", ex.getMessage());
+            logger.warn(ERROR_SERVER, ex.getMessage());
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(responseData);
         }
     }

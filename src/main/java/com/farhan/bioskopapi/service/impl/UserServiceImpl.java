@@ -13,7 +13,7 @@ import java.util.Optional;
 @Transactional
 public class UserServiceImpl implements UserService {
 
-    private UserRepository userRepository;
+    private final UserRepository userRepository;
 
     @Autowired
     public UserServiceImpl(UserRepository userRepository) {
@@ -42,9 +42,6 @@ public class UserServiceImpl implements UserService {
     @Override
     public void removeOne(String username) {
         Optional<UserEntity> user = userRepository.findByUsername(username);
-        UserEntity userDelete;
-        if (user.isPresent()) {
-            userRepository.deleteById(user.get().getId());
-        }
+        user.ifPresent(userEntity -> userRepository.deleteById(userEntity.getId()));
     }
 }

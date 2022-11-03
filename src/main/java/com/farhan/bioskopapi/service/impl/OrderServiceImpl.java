@@ -3,6 +3,7 @@ package com.farhan.bioskopapi.service.impl;
 import com.farhan.bioskopapi.entity.OrderEntity;
 import com.farhan.bioskopapi.entity.ScheduleEntity;
 import com.farhan.bioskopapi.entity.UserEntity;
+import com.farhan.bioskopapi.helper.exception.UserNotFound;
 import com.farhan.bioskopapi.repository.OrderRepository;
 import com.farhan.bioskopapi.repository.ScheduleRepository;
 import com.farhan.bioskopapi.repository.UserRepository;
@@ -17,9 +18,9 @@ import java.util.Optional;
 @Service
 public class OrderServiceImpl implements OrderService {
 
-    private OrderRepository orderRepository;
-    private ScheduleRepository scheduleRepository;
-    private UserRepository userRepository;
+    private final OrderRepository orderRepository;
+    private final ScheduleRepository scheduleRepository;
+    private final UserRepository userRepository;
 
     @Autowired
     public OrderServiceImpl(OrderRepository orderRepository, ScheduleRepository scheduleRepository, UserRepository userRepository) {
@@ -39,6 +40,7 @@ public class OrderServiceImpl implements OrderService {
         int quantity = seats.size();
         BigDecimal totalPrice = new BigDecimal(0);
         Optional<UserEntity> user = userRepository.findByUsername(username);
+        if (user.isEmpty()) throw new UserNotFound("User Not Found");
         Optional<ScheduleEntity> schedule = scheduleRepository.findById(scheduleId);
         if (schedule.isPresent()) {
             totalPrice = schedule.get().getPrice();

@@ -8,6 +8,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import javax.transaction.Transactional;
+import java.io.Serializable;
 
 @Getter
 @Setter
@@ -17,7 +18,7 @@ import javax.transaction.Transactional;
 @Transactional
 @Table(name = "order_detail")
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-public class OrderDetailEntity {
+public class OrderDetailEntity implements Serializable {
 
     @EmbeddedId
     private ScheduleSeatStudioId scheduleSeatStudioId;

@@ -1,0 +1,5 @@
+2022-10-22 00:50:10,906 INFO org.springframework.boot.StartupInfoLogger [restartedMain] Starting BioskopApiApplication using Java 11.0.17 on DESKTOP-GP7DHUM with PID 11320 (C:\Users\Farha\OneDrive\Documents\coba ciCd\farhannuryadi_reservasi_bioskop\target\classes started by Farha in C:\Users\Farha\OneDrive\Documents\coba ciCd\farhannuryadi_reservasi_bioskop)
+2022-10-22 00:50:10,913 DEBUG org.springframework.boot.StartupInfoLogger [restartedMain] Running with Spring Boot v2.7.3, Spring v5.3.22
+2022-10-22 00:50:10,915 INFO org.springframework.boot.SpringApplication [restartedMain] No active profile set, falling back to 1 default profile: "default"
+2022-10-22 00:50:35,133 DEBUG org.springframework.web.filter.GenericFilterBean [restartedMain] Filter 'authenticationJwtTokenFilter' configured for use
+2022-10-22 00:50:42,106 INFO org.springframework.boot.StartupInfoLogger [restartedMain] Started BioskopApiApplication in 32.799 seconds (JVM running for 36.137)

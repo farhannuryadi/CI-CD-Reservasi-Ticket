@@ -37,13 +37,17 @@ public class InvoiceServiceImpl implements InvoiceService {
     }
 
     @Override
-    public JasperPrint generateInvoice(String username, Long scheduleId) throws Exception{
-        InputStream filInvoice = new ClassPathResource("invoice/InvoiceCh6.jasper").getInputStream();
-        JasperReport jasperReport = (JasperReport) JRLoader.loadObject(filInvoice);
-        Map<String, Object> params = new HashMap<>();
-        params.put("username", username);
-        params.put("scheduleId", scheduleId);
-        JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, params, getConnection());
-        return jasperPrint;
+    public JasperPrint generateInvoice(String username, Long scheduleId){
+        try {
+            InputStream filInvoice = new ClassPathResource("invoice/InvoiceCh6.jasper").getInputStream();
+            JasperReport jasperReport = (JasperReport) JRLoader.loadObject(filInvoice);
+            Map<String, Object> params = new HashMap<>();
+            params.put("username", username);
+            params.put("scheduleId", scheduleId);
+            return JasperFillManager.fillReport(jasperReport, params, getConnection());
+        }catch (Exception e){
+            e.printStackTrace();
+            return null;
+        }
     }
 }

@@ -1,6 +1,5 @@
 package com.farhan.bioskopapi.repository;
 
-import com.farhan.bioskopapi.entity.ScheduleEntity;
 import com.farhan.bioskopapi.entity.SeatEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;

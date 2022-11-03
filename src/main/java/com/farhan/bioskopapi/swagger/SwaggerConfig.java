@@ -14,8 +14,8 @@ public class SwaggerConfig {
 
     @Bean
     public GroupedOpenApi api(){
-        String paths[] = {"/bioskop/api/**"};
-        String packagesToScan[] = {"com.farhan.bioskopapi.controller"};
+        String[] paths = {"/bioskop/api/**"};
+        String[] packagesToScan = {"com.farhan.bioskopapi.controller"};
         return GroupedOpenApi.builder()
                 .group("reservasi-ticket")
                 .pathsToMatch(paths)
@@ -25,8 +25,8 @@ public class SwaggerConfig {
 
     @Bean
     public GroupedOpenApi auth(){
-        String paths[] = {"/api/auth/**"};
-        String packagesToScan[] = {"com.farhan.bioskopapi.controller"};
+        String[] paths = {"/api/auth/**"};
+        String[] packagesToScan = {"com.farhan.bioskopapi.controller"};
         return GroupedOpenApi.builder()
                 .group("authentication")
                 .pathsToMatch(paths)

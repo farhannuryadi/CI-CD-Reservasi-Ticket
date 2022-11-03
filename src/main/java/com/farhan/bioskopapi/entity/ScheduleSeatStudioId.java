@@ -13,15 +13,6 @@ import java.io.Serializable;
 @EqualsAndHashCode
 public class ScheduleSeatStudioId implements Serializable {
 
-//    @Column(name = "schedule_id")
-//    private Long scheduleId;
-//
-//    @Column(name = "seat_id")
-//    private Long seatId;
-//
-//    @Column(name = "studio_id")
-//    private Long studioId;
-
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "schedule_id")
     private ScheduleEntity schedule;

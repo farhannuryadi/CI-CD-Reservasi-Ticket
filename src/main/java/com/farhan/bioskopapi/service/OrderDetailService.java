@@ -2,7 +2,6 @@ package com.farhan.bioskopapi.service;
 
 import com.farhan.bioskopapi.entity.OrderDetailEntity;
 import com.farhan.bioskopapi.entity.OrderEntity;
-import org.springframework.stereotype.Service;
 
 import java.util.List;
 

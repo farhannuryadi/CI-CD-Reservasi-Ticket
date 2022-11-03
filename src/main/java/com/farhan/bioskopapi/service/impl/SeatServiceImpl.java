@@ -1,6 +1,5 @@
 package com.farhan.bioskopapi.service.impl;
 
-import com.farhan.bioskopapi.entity.ScheduleEntity;
 import com.farhan.bioskopapi.entity.SeatEntity;
 import com.farhan.bioskopapi.repository.SeatRepository;
 import com.farhan.bioskopapi.service.SeatService;
@@ -12,7 +11,7 @@ import java.util.List;
 @Service
 public class SeatServiceImpl implements SeatService {
 
-    private SeatRepository seatRepository;
+    private final SeatRepository seatRepository;
 
     @Autowired
     public SeatServiceImpl(SeatRepository seatRepository) {

@@ -1,7 +1,6 @@
 package com.farhan.bioskopapi.service;
 
 import com.farhan.bioskopapi.entity.StudioEntity;
-import com.farhan.bioskopapi.entity.UserEntity;
 
 public interface StudioService {
 

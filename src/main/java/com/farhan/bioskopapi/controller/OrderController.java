@@ -8,7 +8,6 @@ import com.farhan.bioskopapi.entity.SeatEntity;
 import com.farhan.bioskopapi.helper.utility.StatusCode;
 import com.farhan.bioskopapi.service.OrderDetailService;
 import com.farhan.bioskopapi.service.OrderService;
-import com.farhan.bioskopapi.service.ScheduleService;
 import com.farhan.bioskopapi.service.SeatService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -26,6 +25,9 @@ import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.farhan.bioskopapi.helper.utility.StatusMsg.ERROR_SERVER;
+import static com.farhan.bioskopapi.helper.utility.StatusMsg.SUCCSESS;
+
 @RestController
 @RequestMapping("/bioskop/api/orders")
 @CrossOrigin(origins = "*", maxAge = 3600)
@@ -35,18 +37,16 @@ public class OrderController {
 
     public static final Logger logger = LoggerFactory.getLogger(OrderController.class);
 
-    private OrderService orderService;
-    private OrderDetailService orderDetailService;
-    private SeatService seatService;
-    private ScheduleService scheduleService;
+    private final OrderService orderService;
+    private final OrderDetailService orderDetailService;
+    private final SeatService seatService;
 
 
     @Autowired
-    public OrderController(OrderService orderService, OrderDetailService orderDetailService, SeatService seatService, ScheduleService scheduleService) {
+    public OrderController(OrderService orderService, OrderDetailService orderDetailService, SeatService seatService) {
         this.orderService = orderService;
         this.orderDetailService = orderDetailService;
         this.seatService = seatService;
-        this.scheduleService = scheduleService;
     }
 
     @Operation(summary = "Get all seats")
@@ -62,7 +62,7 @@ public class OrderController {
         try {
             responseData.setStatusCode(StatusCode.OK);
             responseData.setStatus(true);
-            responseData.getMessages().add("sukses");
+            responseData.getMessages().add(SUCCSESS);
             responseData.setData(seatService.findAll());
             logger.info("sukses get all seats");
             return ResponseEntity.ok(responseData);
@@ -71,7 +71,7 @@ public class OrderController {
             responseData.setStatus(false);
             responseData.getMessages().add(ex.getMessage());
             responseData.setData(seatService.findAll());
-            logger.warn("error get all seat cause server :{}", ex.getMessage());
+            logger.warn(ERROR_SERVER, ex.getMessage());
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(responseData);
         }
     }
@@ -92,7 +92,7 @@ public class OrderController {
             seatAvailabelResponse.setSeatName(list);
             responseData.setStatusCode(StatusCode.OK);
             responseData.setStatus(true);
-            responseData.setMessages(List.of("sukses"));
+            responseData.setMessages(List.of(SUCCSESS));
             responseData.setData(seatAvailabelResponse);
             logger.info("call seat available from schedule : {}", scheduleId);
             return ResponseEntity.ok(responseData);
@@ -100,7 +100,7 @@ public class OrderController {
             responseData.setStatusCode(StatusCode.INTERNAL_ERROR);
             responseData.setStatus(false);
             responseData.getMessages().add(ex.getMessage());
-            logger.warn("error from server : {}", ex.getMessage());
+            logger.warn(ERROR_SERVER, ex.getMessage());
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(responseData);
         }
     }
@@ -113,11 +113,11 @@ public class OrderController {
             @ApiResponse(responseCode = "500", description = "Server Error Message")
     })
     @PostMapping("create/{username}/{scheduleId}")
-    public ResponseEntity<ResponseData> createOrder(@PathVariable("username") String username,
+    public ResponseEntity<ResponseData<String>> createOrder(@PathVariable("username") String username,
                                                     @PathVariable("scheduleId") Long scheduleId,
                                                     @RequestBody OrderRequest orderRequest){
 
-        ResponseData responseData = new ResponseData();
+        ResponseData<String> responseData = new ResponseData<>();
         List<String> seats = new ArrayList<>(orderRequest.getSeatName());
 
         try {
@@ -126,14 +126,14 @@ public class OrderController {
 
             responseData.setStatusCode(StatusCode.OK);
             responseData.setStatus(true);
-            responseData.getMessages().add("sukses");
+            responseData.getMessages().add(SUCCSESS);
             logger.info("user : {}, create order from schedule : {}, for seat : {}", username, scheduleId, seats);
             return ResponseEntity.ok(responseData);
         }catch (Exception ex){
             responseData.setStatusCode(StatusCode.INTERNAL_ERROR);
             responseData.setStatus(false);
             responseData.getMessages().add(ex.getMessage());
-            logger.warn("error from server : {}", ex.getMessage());
+            logger.warn(ERROR_SERVER, ex.getMessage());
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(responseData);
         }
     }

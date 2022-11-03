@@ -1,6 +1,5 @@
 package com.farhan.bioskopapi.service;
 
-import com.farhan.bioskopapi.entity.ScheduleEntity;
 import com.farhan.bioskopapi.entity.SeatEntity;
 
 import java.util.List;

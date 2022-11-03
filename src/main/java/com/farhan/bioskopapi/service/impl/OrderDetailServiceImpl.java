@@ -15,21 +15,18 @@ import java.util.Optional;
 @Service
 public class OrderDetailServiceImpl implements OrderDetailService {
 
-    private OrderDetailRepository orderDetailRepository;
-    private OrderRepository orderRepository;
-    private SeatRepository seatRepository;
-    private StudioRepository studioRepository;
-    private ScheduleRepository scheduleRepository;
-    private UserRepository userRepository;
+    private final OrderDetailRepository orderDetailRepository;
+    private final OrderRepository orderRepository;
+    private final SeatRepository seatRepository;
+    private final ScheduleRepository scheduleRepository;
+    private final UserRepository userRepository;
 
     @Autowired
     public OrderDetailServiceImpl(OrderDetailRepository orderDetailRepository, OrderRepository orderRepository,
-                                  SeatRepository seatRepository, StudioRepository studioRepository,
-                                  ScheduleRepository scheduleRepository, UserRepository userRepository) {
+                                  SeatRepository seatRepository, ScheduleRepository scheduleRepository, UserRepository userRepository) {
         this.orderDetailRepository = orderDetailRepository;
         this.orderRepository = orderRepository;
         this.seatRepository = seatRepository;
-        this.studioRepository = studioRepository;
         this.scheduleRepository = scheduleRepository;
         this.userRepository = userRepository;
     }
@@ -48,13 +45,10 @@ public class OrderDetailServiceImpl implements OrderDetailService {
     public void createOrderDetail(List<String> seats, Long scheduleId, String username){
         List<Long> seatId = new ArrayList<>();
         Optional<UserEntity> user = userRepository.findByUsername(username);
+
         Long orderId = orderRepository.findOrderIdByScheduleIdAndUsername(scheduleId, username);
         Long studioId = scheduleRepository.findStudioIdByScheduleId(scheduleId);
-        seats.forEach(s -> {
-            seatId.add(seatRepository.findSeatIdByName(s));
-        });
-        seatId.forEach(idSeat -> {
-            orderDetailRepository.createOrderDetail(idSeat, scheduleId, studioId, orderId, user.get().getId());
-        });
+        seats.forEach(s -> seatId.add(seatRepository.findSeatIdByName(s)));
+        seatId.forEach(idSeat -> orderDetailRepository.createOrderDetail(idSeat, scheduleId, studioId, orderId, user.get().getId()));
     }
 }

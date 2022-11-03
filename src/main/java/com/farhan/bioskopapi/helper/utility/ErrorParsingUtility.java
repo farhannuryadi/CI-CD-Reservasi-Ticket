@@ -8,6 +8,10 @@ import java.util.List;
 
 public class ErrorParsingUtility {
 
+    private ErrorParsingUtility() {
+        throw new IllegalStateException("Utility class");
+    }
+
     public static List<String> parse(Errors errors){
         List<String> messages = new ArrayList<>();
         for (ObjectError error: errors.getAllErrors()) {

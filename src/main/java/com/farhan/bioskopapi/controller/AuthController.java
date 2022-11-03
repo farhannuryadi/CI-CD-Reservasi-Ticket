@@ -4,10 +4,8 @@ package com.farhan.bioskopapi.controller;
 import com.farhan.bioskopapi.dto.request.LoginRequest;
 import com.farhan.bioskopapi.dto.request.SignupRequest;
 import com.farhan.bioskopapi.dto.response.JwtResponse;
-import com.farhan.bioskopapi.dto.response.MessageResponse;
 import com.farhan.bioskopapi.dto.response.ResponseData;
 import com.farhan.bioskopapi.entity.ERole;
-import com.farhan.bioskopapi.entity.FilmEntity;
 import com.farhan.bioskopapi.entity.RoleEntity;
 import com.farhan.bioskopapi.entity.UserEntity;
 import com.farhan.bioskopapi.helper.utility.ErrorParsingUtility;
@@ -25,6 +23,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.validation.Errors;
@@ -43,6 +42,7 @@ import java.util.stream.Collectors;
 public class AuthController {
 
     public static final Logger logger = LoggerFactory.getLogger(AuthController.class);
+    public static final String ROLE_NOT_FOUND = "Error: Role is not found.";
     @Autowired
     AuthenticationManager authenticationManager;
 
@@ -59,14 +59,14 @@ public class AuthController {
     JwtUtils jwtUtils;
 
     @PostMapping("/signin")
-    public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest, Errors errors) {
+    public ResponseEntity<ResponseData<JwtResponse>> authenticateUser(@Valid @RequestBody LoginRequest loginRequest, Errors errors) {
 
-        ResponseData<FilmEntity> responseData = new ResponseData<>();
+        ResponseData<JwtResponse> responseData = new ResponseData<>();
         if (errors.hasErrors()) {
             responseData.setStatusCode(StatusCode.BAD_REQUEST);
             responseData.setStatus(false);
             responseData.setMessages(ErrorParsingUtility.parse(errors));
-            logger.warn("request invalid :{}", ErrorParsingUtility.parse(errors).toString());
+            logger.warn("request invalid :{}", ErrorParsingUtility.parse(errors));
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(responseData);
         }
         Authentication authentication = authenticationManager.authenticate(
@@ -77,38 +77,44 @@ public class AuthController {
 
         UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
         List<String> roles = userDetails.getAuthorities().stream()
-                .map(item -> item.getAuthority())
+                .map(GrantedAuthority::getAuthority)
                 .collect(Collectors.toList());
         logger.info("sukses login user : {}", loginRequest.getUsername());
-        return ResponseEntity.ok(new JwtResponse(jwt,
+        responseData.setStatusCode(StatusCode.BAD_REQUEST);
+        responseData.setStatus(false);
+        responseData.getMessages().add("sukses");
+        responseData.setData(new JwtResponse(jwt,
                 userDetails.getId(),
                 userDetails.getUsername(),
                 userDetails.getEmail(),
                 roles));
+        return ResponseEntity.ok(responseData);
     }
 
     @PostMapping("/signup")
-    public ResponseEntity<?> registerUser(@Valid @RequestBody SignupRequest signUpRequest, Errors errors) {
-        ResponseData<FilmEntity> responseData = new ResponseData<>();
+    public ResponseEntity<ResponseData<String>> registerUser(@Valid @RequestBody SignupRequest signUpRequest, Errors errors) {
+        ResponseData<String> responseData = new ResponseData<>();
         if (errors.hasErrors()) {
             responseData.setStatusCode(StatusCode.BAD_REQUEST);
             responseData.setStatus(false);
             responseData.setMessages(ErrorParsingUtility.parse(errors));
-            logger.warn("request invalid :{}", ErrorParsingUtility.parse(errors).toString());
+            logger.warn("request invalid :{}", ErrorParsingUtility.parse(errors));
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(responseData);
         }
-        if (userRepository.existsByUsername(signUpRequest.getUsername())) {
+        if (Boolean.TRUE.equals(userRepository.existsByUsername(signUpRequest.getUsername()))) {
             logger.warn("Error: Username is already taken!");
-            return ResponseEntity
-                    .badRequest()
-                    .body(new MessageResponse("Error: Username is already taken!"));
+            responseData.setStatusCode(StatusCode.BAD_REQUEST);
+            responseData.setStatus(false);
+            responseData.getMessages().add("Error: Username is already taken!");
+            return ResponseEntity.badRequest().body(responseData);
         }
 
-        if (userRepository.existsByEmail(signUpRequest.getEmail())) {
+        if (Boolean.TRUE.equals(userRepository.existsByEmail(signUpRequest.getEmail()))) {
             logger.warn("Error: Email is already in use!");
-            return ResponseEntity
-                    .badRequest()
-                    .body(new MessageResponse("Error: Email is already in use!"));
+            responseData.setStatusCode(StatusCode.BAD_REQUEST);
+            responseData.setStatus(false);
+            responseData.getMessages().add("Error: Email is already in use!");
+            return ResponseEntity.badRequest().body(responseData);
         }
 
         // Create new user's account
@@ -124,20 +130,18 @@ public class AuthController {
         if (strRoles == null) {
             RoleEntity userRole = roleRepository.findByName(ERole.ROLE_USER)
                     .orElseThrow(() -> {
-                        logger.warn("Error: Role is not found.");
-                        return new RuntimeException("Error: Role is not found.");
+                        logger.warn(ROLE_NOT_FOUND);
+                        return new RuntimeException(ROLE_NOT_FOUND);
                     });
             roles.add(userRole);
-            strRoles.forEach(System.out::println);
-            System.out.println("ke panggil");
         } else {
             strRoles.forEach(role -> {
                 switch (role) {
                     case "admin":
                         RoleEntity adminRole = roleRepository.findByName(ERole.ROLE_ADMIN)
                                 .orElseThrow(() -> {
-                                    logger.warn("Error: Role is not found.");
-                                    return new RuntimeException("Error: Role is not found.");
+                                    logger.warn(ROLE_NOT_FOUND);
+                                    return new RuntimeException(ROLE_NOT_FOUND);
                                 });
                         roles.add(adminRole);
 
@@ -145,8 +149,8 @@ public class AuthController {
                     case "mod":
                         RoleEntity modRole = roleRepository.findByName(ERole.ROLE_MODERATOR)
                                 .orElseThrow(() -> {
-                                    logger.warn("Error: Role is not found.");
-                                    return new RuntimeException("Error: Role is not found.");
+                                    logger.warn(ROLE_NOT_FOUND);
+                                    return new RuntimeException(ROLE_NOT_FOUND);
                                 });
                         roles.add(modRole);
 
@@ -154,8 +158,8 @@ public class AuthController {
                     default:
                         RoleEntity userRole = roleRepository.findByName(ERole.ROLE_USER)
                                 .orElseThrow(() -> {
-                                    logger.warn("Error: Role is not found.");
-                                    return new RuntimeException("Error: Role is not found.");
+                                    logger.warn(ROLE_NOT_FOUND);
+                                    return new RuntimeException(ROLE_NOT_FOUND);
                                 });
                         roles.add(userRole);
                 }
@@ -164,7 +168,10 @@ public class AuthController {
 
         user.setRoles(roles);
         userRepository.save(user);
+        responseData.setStatusCode(StatusCode.OK);
+        responseData.setStatus(true);
+        responseData.getMessages().add("User registered successfully!");
         logger.info("new signup sukses user : {}", signUpRequest.getUsername());
-        return ResponseEntity.ok(new MessageResponse("User registered successfully!"));
+        return ResponseEntity.ok(responseData);
     }
 }

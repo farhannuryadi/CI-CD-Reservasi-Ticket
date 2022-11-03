@@ -1,7 +1,9 @@
 package com.farhan.bioskopapi.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
@@ -13,6 +15,8 @@ import java.io.Serializable;
 @Entity
 @Table(name = "films")
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+@AllArgsConstructor
+@NoArgsConstructor
 public class FilmEntity implements Serializable {
 
     @Id

@@ -1,5 +1,6 @@
 package com.farhan.bioskopapi.controller;
 
+import com.farhan.bioskopapi.dto.request.StudioRequest;
 import com.farhan.bioskopapi.dto.response.ResponseData;
 import com.farhan.bioskopapi.entity.StudioEntity;
 import com.farhan.bioskopapi.helper.utility.ErrorParsingUtility;
@@ -22,6 +23,9 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
+import static com.farhan.bioskopapi.helper.utility.StatusMsg.ERROR_SERVER;
+import static com.farhan.bioskopapi.helper.utility.StatusMsg.SUCCSESS;
+
 @RestController
 @RequestMapping("/bioskop/api/studios")
 @CrossOrigin(origins = "*", maxAge = 3600)
@@ -29,9 +33,9 @@ import javax.validation.Valid;
 @Tag(name = "Studio", description = "Operation about studio")
 public class StudioController {
 
-    public static final Logger logger = LoggerFactory.getLogger(StudioEntity.class);
+    public static final Logger logger = LoggerFactory.getLogger(StudioController.class);
 
-    private StudioService studioService;
+    private final StudioService studioService;
 
     @Autowired
     public StudioController(StudioService studioService) {
@@ -47,7 +51,7 @@ public class StudioController {
             @ApiResponse(responseCode = "500", description = "Server Error Message")
     })
     @PostMapping
-    public ResponseEntity<ResponseData<StudioEntity>> create(@Valid @RequestBody StudioEntity studioEntity, Errors errors){
+    public ResponseEntity<ResponseData<StudioEntity>> create(@Valid @RequestBody StudioRequest studioRequest, Errors errors){
 
         ResponseData<StudioEntity> responseData = new ResponseData<>();
 
@@ -59,9 +63,11 @@ public class StudioController {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(responseData);
         }
         try{
+            StudioEntity studioEntity = new StudioEntity(studioRequest.getId(), studioRequest.getStudioName(),
+                    studioRequest.getMaxSeat(), studioRequest.getStudioStatus());
             responseData.setStatusCode(StatusCode.OK);
             responseData.setStatus(true);
-            responseData.getMessages().add("sukses");
+            responseData.getMessages().add(SUCCSESS);
             responseData.setData(studioService.save(studioEntity));
             logger.info("create studio : {}", studioEntity.getStudioName());
             return ResponseEntity.ok(responseData);
@@ -69,7 +75,7 @@ public class StudioController {
             responseData.setStatusCode(StatusCode.INTERNAL_ERROR);
             responseData.setStatus(false);
             responseData.getMessages().add(ex.getMessage());
-            logger.warn("error from server : {}", ex.getMessage());
+            logger.warn(ERROR_SERVER, ex.getMessage());
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(responseData);
         }
     }
@@ -87,7 +93,7 @@ public class StudioController {
         try{
             responseData.setStatusCode(StatusCode.OK);
             responseData.setStatus(true);
-            responseData.getMessages().add("sukses");
+            responseData.getMessages().add(SUCCSESS);
             responseData.setData(studioService.findOne(id));
             logger.info("call find studio with id : {}", id);
             return ResponseEntity.ok(responseData);
@@ -95,7 +101,7 @@ public class StudioController {
             responseData.setStatusCode(StatusCode.INTERNAL_ERROR);
             responseData.setStatus(false);
             responseData.getMessages().add(ex.getMessage());
-            logger.warn("error from server : {}", ex.getMessage());
+            logger.warn(ERROR_SERVER, ex.getMessage());
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(responseData);
         }
     }
@@ -113,7 +119,7 @@ public class StudioController {
         try{
             responseData.setStatusCode(StatusCode.OK);
             responseData.setStatus(true);
-            responseData.getMessages().add("sukses");
+            responseData.getMessages().add(SUCCSESS);
             responseData.setData(studioService.findAll());
             logger.info("call find all studio");
             return ResponseEntity.ok(responseData);
@@ -121,7 +127,7 @@ public class StudioController {
             responseData.setStatusCode(StatusCode.INTERNAL_ERROR);
             responseData.setStatus(false);
             responseData.getMessages().add(ex.getMessage());
-            logger.warn("error from server : {}", ex.getMessage());
+            logger.warn(ERROR_SERVER, ex.getMessage());
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(responseData);
         }
     }
@@ -135,7 +141,7 @@ public class StudioController {
             @ApiResponse(responseCode = "500", description = "Server Error Message")
     })
     @PutMapping
-    public ResponseEntity<ResponseData<StudioEntity>> update(@Valid @RequestBody StudioEntity studioEntity, Errors errors){
+    public ResponseEntity<ResponseData<StudioEntity>> update(@Valid @RequestBody StudioRequest studioRequest, Errors errors){
 
         ResponseData<StudioEntity> responseData = new ResponseData<>();
 
@@ -147,9 +153,11 @@ public class StudioController {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(responseData);
         }
         try{
+            StudioEntity studioEntity = new StudioEntity(studioRequest.getId(), studioRequest.getStudioName(),
+                    studioRequest.getMaxSeat(), studioRequest.getStudioStatus());
             responseData.setStatusCode(StatusCode.OK);
             responseData.setStatus(true);
-            responseData.getMessages().add("sukses");
+            responseData.getMessages().add(SUCCSESS);
             responseData.setData(studioService.save(studioEntity));
             logger.info("update studio name : {}", studioEntity.getStudioName());
             return ResponseEntity.ok(responseData);
@@ -157,7 +165,7 @@ public class StudioController {
             responseData.setStatusCode(StatusCode.INTERNAL_ERROR);
             responseData.setStatus(false);
             responseData.getMessages().add(ex.getMessage());
-            logger.warn("error from server : {}", ex.getMessage());
+            logger.warn(ERROR_SERVER, ex.getMessage());
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(responseData);
         }
     }
@@ -168,12 +176,12 @@ public class StudioController {
             @ApiResponse(responseCode = "500", description = "Server Error Message")
     })
     @DeleteMapping("/{id}")
-    public ResponseEntity<ResponseData> removeOne(@PathVariable("id") Long id){
-        ResponseData responseData = new ResponseData();
+    public ResponseEntity<ResponseData<String>> removeOne(@PathVariable("id") Long id){
+        ResponseData<String> responseData = new ResponseData<>();
         try{
             responseData.setStatusCode(StatusCode.OK);
             responseData.setStatus(true);
-            responseData.getMessages().add("sukses");
+            responseData.getMessages().add(SUCCSESS);
             studioService.removeOne(id);
             logger.info("delete studio id : {}", id);
             return ResponseEntity.ok(responseData);
@@ -181,7 +189,7 @@ public class StudioController {
             responseData.setStatusCode(StatusCode.INTERNAL_ERROR);
             responseData.setStatus(false);
             responseData.getMessages().add(ex.getMessage());
-            logger.warn("error from server : {}", ex.getMessage());
+            logger.warn(ERROR_SERVER, ex.getMessage());
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(responseData);
         }
     }

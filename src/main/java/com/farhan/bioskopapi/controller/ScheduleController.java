@@ -28,6 +28,8 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.util.List;
 
+import static com.farhan.bioskopapi.helper.utility.StatusMsg.*;
+
 @RestController
 @RequestMapping("/bioskop/api/schedules")
 @CrossOrigin(origins = "*", maxAge = 3600)
@@ -37,64 +39,17 @@ public class ScheduleController {
 
     public static final Logger logger = LoggerFactory.getLogger(ScheduleController.class);
 
-    private ScheduleService scheduleService;
+    private final ScheduleService scheduleService;
 
-    private FilmService filmService;
+    private final FilmService filmService;
 
-    private StudioService studioService;
+    private final StudioService studioService;
 
     @Autowired
-    public void setScheduleService(ScheduleService scheduleService) {
+    public ScheduleController(ScheduleService scheduleService, FilmService filmService, StudioService studioService) {
         this.scheduleService = scheduleService;
-    }
-
-    @Autowired
-    public void setFilmService(FilmService filmService) {
         this.filmService = filmService;
-    }
-
-    @Autowired
-    public void setStudioService(StudioService studioService) {
         this.studioService = studioService;
-    }
-
-    @Operation(summary = "Add a new schedule and films")
-    @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "sukses", content = {
-                    @Content(mediaType = "application/json", schema = @Schema(implementation = ScheduleEntity.class))
-            }),
-            @ApiResponse(responseCode = "400", description = "Request Error Message"),
-            @ApiResponse(responseCode = "500", description = "Server Error Message")
-    })
-    @PostMapping("/with/data")
-    public ResponseEntity<ResponseData<ScheduleEntity>> create(@Valid @RequestBody ScheduleEntity scheduleEntity, Errors errors){
-        ResponseData<ScheduleEntity> responseData = new ResponseData<>();
-
-        if (errors.hasErrors()) {
-            responseData.setStatusCode(StatusCode.BAD_REQUEST);
-            responseData.setStatus(false);
-            responseData.setMessages(ErrorParsingUtility.parse(errors));
-            logger.warn("error request : {}", ErrorParsingUtility.parse(errors));
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(responseData);
-        }
-        try {
-            filmService.save(scheduleEntity.getFilm());
-            studioService.save(scheduleEntity.getStudio());
-
-            responseData.setStatusCode(StatusCode.OK);
-            responseData.setStatus(true);
-            responseData.getMessages().add("sukses");
-            responseData.setData(scheduleService.save(scheduleEntity));
-            logger.info("sukses create schedule id : {}, for film : {}, in studio : {}", scheduleEntity.getId(),
-                    scheduleEntity.getFilm().getFilmName(), scheduleEntity.getStudio().getStudioName());
-            return ResponseEntity.ok(responseData);
-        }catch (Exception ex){
-            responseData.setStatusCode(StatusCode.INTERNAL_ERROR);
-            responseData.setStatus(false);
-            responseData.getMessages().add(ex.getMessage());
-            logger.warn("error from server : {}", ex.getMessage());
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(responseData);
-        }
     }
 
     @Operation(summary = "Add a new schdedule with id film")
@@ -113,7 +68,7 @@ public class ScheduleController {
             responseData.setStatusCode(StatusCode.BAD_REQUEST);
             responseData.setStatus(false);
             responseData.setMessages(ErrorParsingUtility.parse(errors));
-            logger.warn("error request : {}", ErrorParsingUtility.parse(errors));
+            logger.warn(REQUEST_INVALID, ErrorParsingUtility.parse(errors));
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(responseData);
         }
         try {
@@ -128,7 +83,7 @@ public class ScheduleController {
 
             responseData.setStatusCode(StatusCode.OK);
             responseData.setStatus(true);
-            responseData.getMessages().add("sukses");
+            responseData.getMessages().add(SUCCSESS);
             responseData.setData(scheduleService.save(scheduleEntity));
             logger.info("sukses create schedule id : {}, for film : {}, in studio : {}", scheduleEntity.getId(),
                     scheduleEntity.getFilm().getFilmName(), scheduleEntity.getStudio().getStudioName());
@@ -137,7 +92,7 @@ public class ScheduleController {
             responseData.setStatusCode(StatusCode.INTERNAL_ERROR);
             responseData.setStatus(false);
             responseData.getMessages().add(ex.getMessage());
-            logger.warn("error from server : {}", ex.getMessage());
+            logger.warn(ERROR_SERVER, ex.getMessage());
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(responseData);
         }
     }
@@ -156,7 +111,7 @@ public class ScheduleController {
         try {
             responseData.setStatusCode(StatusCode.OK);
             responseData.setStatus(true);
-            responseData.getMessages().add("sukses");
+            responseData.getMessages().add(SUCCSESS);
             responseData.setData(scheduleService.findOne(id));
             logger.info("sukses get schedule id : {}", id);
             return ResponseEntity.ok(responseData);
@@ -164,7 +119,7 @@ public class ScheduleController {
             responseData.setStatusCode(StatusCode.INTERNAL_ERROR);
             responseData.setStatus(false);
             responseData.getMessages().add(ex.getMessage());
-            logger.warn("error from server : {}", ex.getMessage());
+            logger.warn(ERROR_SERVER, ex.getMessage());
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(responseData);
         }
     }
@@ -182,7 +137,7 @@ public class ScheduleController {
         try{
             responseData.setStatusCode(StatusCode.OK);
             responseData.setStatus(true);
-            responseData.getMessages().add("sukses");
+            responseData.getMessages().add(SUCCSESS);
             responseData.setData(scheduleService.findAll());
             logger.info("sukses get all schedule");
             return ResponseEntity.ok(responseData);
@@ -190,7 +145,7 @@ public class ScheduleController {
             responseData.setStatusCode(StatusCode.INTERNAL_ERROR);
             responseData.setStatus(false);
             responseData.getMessages().add(ex.getMessage());
-            logger.warn("error from server : {}", ex.getMessage());
+            logger.warn(ERROR_SERVER, ex.getMessage());
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(responseData);
         }
     }
@@ -203,33 +158,39 @@ public class ScheduleController {
             @ApiResponse(responseCode = "400", description = "Request Error Message"),
             @ApiResponse(responseCode = "500", description = "Server Error Message")
     })
-    @PutMapping
-    public ResponseEntity<ResponseData<ScheduleEntity>> update(@Valid @RequestBody ScheduleEntity scheduleEntity, Errors errors){
+    @PutMapping("/update/with/id")
+    public ResponseEntity<ResponseData<ScheduleEntity>> update(@Valid @RequestBody ScheduleRequest scheduleRequest, Errors errors){
         ResponseData<ScheduleEntity> responseData = new ResponseData<>();
 
-        if (errors.hasErrors()) {
+        if ((errors.hasErrors()) || (studioService.findOne(scheduleRequest.getStudioId()) == null) || (filmService.findOne(scheduleRequest.getFilmId())) == null) {
             responseData.setStatusCode(StatusCode.BAD_REQUEST);
             responseData.setStatus(false);
             responseData.setMessages(ErrorParsingUtility.parse(errors));
-            logger.warn("error request : {}", ErrorParsingUtility.parse(errors));
+            logger.warn(REQUEST_INVALID, ErrorParsingUtility.parse(errors));
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(responseData);
         }
         try {
-            filmService.save(scheduleEntity.getFilm());
-            studioService.save(scheduleEntity.getStudio());
+            ScheduleEntity scheduleEntity = new ScheduleEntity();
+            scheduleEntity.setId(scheduleRequest.getStudioId());
+            scheduleEntity.setShowDate(scheduleRequest.getTanggalTayang());
+            scheduleEntity.setStartTime(scheduleRequest.getJamMulai());
+            scheduleEntity.setEndTime(scheduleRequest.getJamSelesai());
+            scheduleEntity.setPrice(scheduleRequest.getHarga());
+            scheduleEntity.setFilm(filmService.findOne(scheduleRequest.getFilmId()));
+            scheduleEntity.setStudio(studioService.findOne(scheduleRequest.getStudioId()));
 
             responseData.setStatusCode(StatusCode.OK);
             responseData.setStatus(true);
-            responseData.getMessages().add("sukses");
+            responseData.getMessages().add(SUCCSESS);
             responseData.setData(scheduleService.save(scheduleEntity));
-            logger.info("update schedule id : {}, for film : {}, in studio : {}", scheduleEntity.getId(),
+            logger.info("sukses update schedule id : {}, for film : {}, in studio : {}", scheduleEntity.getId(),
                     scheduleEntity.getFilm().getFilmName(), scheduleEntity.getStudio().getStudioName());
             return ResponseEntity.ok(responseData);
         }catch (Exception ex){
             responseData.setStatusCode(StatusCode.INTERNAL_ERROR);
             responseData.setStatus(false);
             responseData.getMessages().add(ex.getMessage());
-            logger.warn("error from server : {}", ex.getMessage());
+            logger.warn(ERROR_SERVER, ex.getMessage());
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(responseData);
         }
     }
@@ -240,12 +201,12 @@ public class ScheduleController {
             @ApiResponse(responseCode = "500", description = "Server Error Message")
     })
     @DeleteMapping("/{id}")
-    public ResponseEntity<ResponseData> removeOne(@PathVariable("id") Long id){
-        ResponseData responseData = new ResponseData();
+    public ResponseEntity<ResponseData<String>> removeOne(@PathVariable("id") Long id){
+        ResponseData<String> responseData = new ResponseData<>();
         try{
             responseData.setStatusCode(StatusCode.OK);
             responseData.setStatus(true);
-            responseData.getMessages().add("sukses");
+            responseData.getMessages().add(SUCCSESS);
             scheduleService.removeOne(id);
             logger.info("delete schedule with id : {}", id);
             return ResponseEntity.ok(responseData);
@@ -253,7 +214,7 @@ public class ScheduleController {
             responseData.setStatusCode(StatusCode.INTERNAL_ERROR);
             responseData.setStatus(false);
             responseData.getMessages().add(ex.getMessage());
-            logger.warn("error from server : {}", ex.getMessage());
+            logger.warn(ERROR_SERVER, ex.getMessage());
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(responseData);
         }
     }
@@ -280,7 +241,7 @@ public class ScheduleController {
         try {
             responseData.setStatusCode(StatusCode.OK);
             responseData.setStatus(true);
-            responseData.getMessages().add("sukses");
+            responseData.getMessages().add(SUCCSESS);
             FilmEntity filmEntity = filmService.findByName(filmName.getSearchKey());
             responseData.setData(scheduleService.findByFilmName(filmEntity));
             logger.info("find schedule with film name : {}", filmName.getSearchKey());
@@ -289,7 +250,7 @@ public class ScheduleController {
             responseData.setStatusCode(StatusCode.INTERNAL_ERROR);
             responseData.setStatus(false);
             responseData.getMessages().add(ex.getMessage());
-            logger.warn("error from server : {}", ex.getMessage());
+            logger.warn(ERROR_SERVER, ex.getMessage());
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(responseData);
         }
     }
