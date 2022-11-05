@@ -1,8 +1,6 @@
 package com.farhan.bioskopapi.entity;
 
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -11,6 +9,8 @@ import java.io.Serializable;
 @Setter
 @Embeddable
 @EqualsAndHashCode
+@NoArgsConstructor
+@AllArgsConstructor
 public class ScheduleSeatStudioId implements Serializable {
 
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)

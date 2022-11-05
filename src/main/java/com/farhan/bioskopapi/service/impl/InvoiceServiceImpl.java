@@ -20,7 +20,7 @@ import java.util.Map;
 public class InvoiceServiceImpl implements InvoiceService {
 
 
-    private DataSource dataSource;
+    private final DataSource dataSource;
 
     @Autowired
     public InvoiceServiceImpl(DataSource dataSource) {

@@ -1,0 +1,196 @@
+2022-11-04 11:04:18,775 INFO org.springframework.boot.StartupInfoLogger [main] Starting StudioServiceImplTest using Java 11.0.17 on DESKTOP-GP7DHUM with PID 13004 (started by Farha in C:\Users\Farha\OneDrive\Documents\coba ciCd\farhannuryadi_reservasi_bioskop)
+2022-11-04 11:04:18,795 DEBUG org.springframework.boot.StartupInfoLogger [main] Running with Spring Boot v2.7.3, Spring v5.3.22
+2022-11-04 11:04:18,796 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to 1 default profile: "default"
+2022-11-04 11:04:52,618 INFO org.springframework.boot.StartupInfoLogger [main] Started StudioServiceImplTest in 35.076 seconds (JVM running for 44.206)
+2022-11-04 11:05:43,796 INFO org.springframework.boot.StartupInfoLogger [main] Starting StudioServiceImplTest using Java 11.0.17 on DESKTOP-GP7DHUM with PID 8028 (started by Farha in C:\Users\Farha\OneDrive\Documents\coba ciCd\farhannuryadi_reservasi_bioskop)
+2022-11-04 11:05:43,799 DEBUG org.springframework.boot.StartupInfoLogger [main] Running with Spring Boot v2.7.3, Spring v5.3.22
+2022-11-04 11:05:43,801 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to 1 default profile: "default"
+2022-11-04 11:06:07,862 INFO org.springframework.boot.StartupInfoLogger [main] Started StudioServiceImplTest in 24.908 seconds (JVM running for 28.37)
+2022-11-04 11:07:35,282 INFO org.springframework.boot.StartupInfoLogger [main] Starting StudioServiceImplTest using Java 11.0.17 on DESKTOP-GP7DHUM with PID 11760 (started by Farha in C:\Users\Farha\OneDrive\Documents\coba ciCd\farhannuryadi_reservasi_bioskop)
+2022-11-04 11:07:35,284 DEBUG org.springframework.boot.StartupInfoLogger [main] Running with Spring Boot v2.7.3, Spring v5.3.22
+2022-11-04 11:07:35,285 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to 1 default profile: "default"
+2022-11-04 11:08:06,031 INFO org.springframework.boot.StartupInfoLogger [main] Started StudioServiceImplTest in 31.648 seconds (JVM running for 35.667)
+2022-11-04 11:08:54,946 INFO org.springframework.boot.StartupInfoLogger [main] Starting StudioServiceImplTest using Java 11.0.17 on DESKTOP-GP7DHUM with PID 14328 (started by Farha in C:\Users\Farha\OneDrive\Documents\coba ciCd\farhannuryadi_reservasi_bioskop)
+2022-11-04 11:08:54,948 DEBUG org.springframework.boot.StartupInfoLogger [main] Running with Spring Boot v2.7.3, Spring v5.3.22
+2022-11-04 11:08:54,965 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to 1 default profile: "default"
+2022-11-04 11:09:14,720 INFO org.springframework.boot.StartupInfoLogger [main] Started StudioServiceImplTest in 20.591 seconds (JVM running for 24.552)
+2022-11-04 11:31:11,438 INFO org.springframework.boot.StartupInfoLogger [main] Starting StudioServiceImplTest using Java 11.0.17 on DESKTOP-GP7DHUM with PID 18256 (started by Farha in C:\Users\Farha\OneDrive\Documents\coba ciCd\farhannuryadi_reservasi_bioskop)
+2022-11-04 11:31:11,455 DEBUG org.springframework.boot.StartupInfoLogger [main] Running with Spring Boot v2.7.3, Spring v5.3.22
+2022-11-04 11:31:11,457 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to 1 default profile: "default"
+2022-11-04 11:31:43,684 INFO org.springframework.boot.StartupInfoLogger [main] Started StudioServiceImplTest in 34.242 seconds (JVM running for 41.567)
+2022-11-04 11:33:09,153 INFO org.springframework.boot.StartupInfoLogger [main] Starting StudioServiceImplTest using Java 11.0.17 on DESKTOP-GP7DHUM with PID 7520 (started by Farha in C:\Users\Farha\OneDrive\Documents\coba ciCd\farhannuryadi_reservasi_bioskop)
+2022-11-04 11:33:09,156 DEBUG org.springframework.boot.StartupInfoLogger [main] Running with Spring Boot v2.7.3, Spring v5.3.22
+2022-11-04 11:33:09,157 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to 1 default profile: "default"
+2022-11-04 11:33:30,189 INFO org.springframework.boot.StartupInfoLogger [main] Started StudioServiceImplTest in 21.88 seconds (JVM running for 25.267)
+2022-11-04 11:36:06,224 INFO org.springframework.boot.StartupInfoLogger [main] Starting StudioServiceImplTest using Java 11.0.17 on DESKTOP-GP7DHUM with PID 16056 (started by Farha in C:\Users\Farha\OneDrive\Documents\coba ciCd\farhannuryadi_reservasi_bioskop)
+2022-11-04 11:36:06,226 DEBUG org.springframework.boot.StartupInfoLogger [main] Running with Spring Boot v2.7.3, Spring v5.3.22
+2022-11-04 11:36:06,227 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to 1 default profile: "default"
+2022-11-04 11:36:29,963 INFO org.springframework.boot.StartupInfoLogger [main] Started StudioServiceImplTest in 24.651 seconds (JVM running for 27.964)
+2022-11-04 12:25:35,115 INFO org.springframework.boot.StartupInfoLogger [main] Starting StudioServiceImplTest using Java 11.0.17 on DESKTOP-GP7DHUM with PID 16568 (started by Farha in C:\Users\Farha\OneDrive\Documents\coba ciCd\farhannuryadi_reservasi_bioskop)
+2022-11-04 12:25:35,117 DEBUG org.springframework.boot.StartupInfoLogger [main] Running with Spring Boot v2.7.3, Spring v5.3.22
+2022-11-04 12:25:35,119 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to 1 default profile: "default"
+2022-11-04 12:26:20,458 INFO org.springframework.boot.StartupInfoLogger [main] Started StudioServiceImplTest in 46.813 seconds (JVM running for 53.04)
+2022-11-04 12:27:55,473 INFO org.springframework.boot.StartupInfoLogger [main] Starting StudioServiceImplTest using Java 11.0.17 on DESKTOP-GP7DHUM with PID 12440 (started by Farha in C:\Users\Farha\OneDrive\Documents\coba ciCd\farhannuryadi_reservasi_bioskop)
+2022-11-04 12:27:55,475 DEBUG org.springframework.boot.StartupInfoLogger [main] Running with Spring Boot v2.7.3, Spring v5.3.22
+2022-11-04 12:27:55,477 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to 1 default profile: "default"
+2022-11-04 12:28:23,560 INFO org.springframework.boot.StartupInfoLogger [main] Started StudioServiceImplTest in 29.416 seconds (JVM running for 34.729)
+2022-11-04 12:29:47,505 INFO org.springframework.boot.StartupInfoLogger [main] Starting StudioServiceImplTest using Java 11.0.17 on DESKTOP-GP7DHUM with PID 16960 (started by Farha in C:\Users\Farha\OneDrive\Documents\coba ciCd\farhannuryadi_reservasi_bioskop)
+2022-11-04 12:29:47,508 DEBUG org.springframework.boot.StartupInfoLogger [main] Running with Spring Boot v2.7.3, Spring v5.3.22
+2022-11-04 12:29:47,509 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to 1 default profile: "default"
+2022-11-04 12:30:16,573 INFO org.springframework.boot.StartupInfoLogger [main] Started StudioServiceImplTest in 30.118 seconds (JVM running for 34.118)
+2022-11-04 12:34:39,640 INFO org.springframework.boot.StartupInfoLogger [main] Starting StudioServiceImplTest using Java 11.0.17 on DESKTOP-GP7DHUM with PID 13864 (started by Farha in C:\Users\Farha\OneDrive\Documents\coba ciCd\farhannuryadi_reservasi_bioskop)
+2022-11-04 12:34:39,644 DEBUG org.springframework.boot.StartupInfoLogger [main] Running with Spring Boot v2.7.3, Spring v5.3.22
+2022-11-04 12:34:39,646 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to 1 default profile: "default"
+2022-11-04 12:35:03,900 INFO org.springframework.boot.StartupInfoLogger [main] Started StudioServiceImplTest in 25.2 seconds (JVM running for 30.754)
+2022-11-04 12:37:05,693 INFO org.springframework.boot.StartupInfoLogger [main] Starting StudioServiceImplTest using Java 11.0.17 on DESKTOP-GP7DHUM with PID 8324 (started by Farha in C:\Users\Farha\OneDrive\Documents\coba ciCd\farhannuryadi_reservasi_bioskop)
+2022-11-04 12:37:05,695 DEBUG org.springframework.boot.StartupInfoLogger [main] Running with Spring Boot v2.7.3, Spring v5.3.22
+2022-11-04 12:37:05,697 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to 1 default profile: "default"
+2022-11-04 12:37:30,557 INFO org.springframework.boot.StartupInfoLogger [main] Started StudioServiceImplTest in 25.855 seconds (JVM running for 31.157)
+2022-11-04 12:39:34,803 INFO org.springframework.boot.StartupInfoLogger [main] Starting StudioServiceImplTest using Java 11.0.17 on DESKTOP-GP7DHUM with PID 1228 (started by Farha in C:\Users\Farha\OneDrive\Documents\coba ciCd\farhannuryadi_reservasi_bioskop)
+2022-11-04 12:39:34,806 DEBUG org.springframework.boot.StartupInfoLogger [main] Running with Spring Boot v2.7.3, Spring v5.3.22
+2022-11-04 12:39:34,808 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to 1 default profile: "default"
+2022-11-04 12:39:59,311 INFO org.springframework.boot.StartupInfoLogger [main] Started StudioServiceImplTest in 25.608 seconds (JVM running for 32.107)
+2022-11-04 12:40:46,564 INFO org.springframework.boot.StartupInfoLogger [main] Starting StudioServiceImplTest using Java 11.0.17 on DESKTOP-GP7DHUM with PID 12920 (started by Farha in C:\Users\Farha\OneDrive\Documents\coba ciCd\farhannuryadi_reservasi_bioskop)
+2022-11-04 12:40:46,567 DEBUG org.springframework.boot.StartupInfoLogger [main] Running with Spring Boot v2.7.3, Spring v5.3.22
+2022-11-04 12:40:46,568 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to 1 default profile: "default"
+2022-11-04 12:41:11,366 INFO org.springframework.boot.StartupInfoLogger [main] Started StudioServiceImplTest in 25.755 seconds (JVM running for 31.197)
+2022-11-04 12:42:54,738 INFO org.springframework.boot.StartupInfoLogger [main] Starting StudioServiceImplTest using Java 11.0.17 on DESKTOP-GP7DHUM with PID 8336 (started by Farha in C:\Users\Farha\OneDrive\Documents\coba ciCd\farhannuryadi_reservasi_bioskop)
+2022-11-04 12:42:54,742 DEBUG org.springframework.boot.StartupInfoLogger [main] Running with Spring Boot v2.7.3, Spring v5.3.22
+2022-11-04 12:42:54,744 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to 1 default profile: "default"
+2022-11-04 12:43:20,090 INFO org.springframework.boot.StartupInfoLogger [main] Started StudioServiceImplTest in 26.34 seconds (JVM running for 31.956)
+2022-11-04 12:52:57,480 INFO org.springframework.boot.StartupInfoLogger [main] Starting StudioServiceImplTest using Java 11.0.17 on DESKTOP-GP7DHUM with PID 11788 (started by Farha in C:\Users\Farha\OneDrive\Documents\coba ciCd\farhannuryadi_reservasi_bioskop)
+2022-11-04 12:52:57,484 DEBUG org.springframework.boot.StartupInfoLogger [main] Running with Spring Boot v2.7.3, Spring v5.3.22
+2022-11-04 12:52:57,486 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to 1 default profile: "default"
+2022-11-04 12:53:21,347 INFO org.springframework.boot.StartupInfoLogger [main] Started StudioServiceImplTest in 25.209 seconds (JVM running for 30.704)
+2022-11-04 12:55:07,697 INFO org.springframework.boot.StartupInfoLogger [main] Starting StudioServiceImplTest using Java 11.0.17 on DESKTOP-GP7DHUM with PID 18496 (started by Farha in C:\Users\Farha\OneDrive\Documents\coba ciCd\farhannuryadi_reservasi_bioskop)
+2022-11-04 12:55:07,700 DEBUG org.springframework.boot.StartupInfoLogger [main] Running with Spring Boot v2.7.3, Spring v5.3.22
+2022-11-04 12:55:07,701 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to 1 default profile: "default"
+2022-11-04 12:55:30,748 INFO org.springframework.boot.StartupInfoLogger [main] Started StudioServiceImplTest in 24.158 seconds (JVM running for 29.424)
+2022-11-04 12:56:52,394 INFO org.springframework.boot.StartupInfoLogger [main] Starting StudioServiceImplTest using Java 11.0.17 on DESKTOP-GP7DHUM with PID 12648 (started by Farha in C:\Users\Farha\OneDrive\Documents\coba ciCd\farhannuryadi_reservasi_bioskop)
+2022-11-04 12:56:52,397 DEBUG org.springframework.boot.StartupInfoLogger [main] Running with Spring Boot v2.7.3, Spring v5.3.22
+2022-11-04 12:56:52,399 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to 1 default profile: "default"
+2022-11-04 12:57:16,007 INFO org.springframework.boot.StartupInfoLogger [main] Started StudioServiceImplTest in 24.468 seconds (JVM running for 29.735)
+2022-11-04 13:25:13,624 INFO org.springframework.boot.StartupInfoLogger [main] Starting SeatServiceImplTest using Java 11.0.17 on DESKTOP-GP7DHUM with PID 10640 (started by Farha in C:\Users\Farha\OneDrive\Documents\coba ciCd\farhannuryadi_reservasi_bioskop)
+2022-11-04 13:25:13,643 DEBUG org.springframework.boot.StartupInfoLogger [main] Running with Spring Boot v2.7.3, Spring v5.3.22
+2022-11-04 13:25:13,645 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to 1 default profile: "default"
+2022-11-04 13:25:48,714 INFO org.springframework.boot.StartupInfoLogger [main] Started SeatServiceImplTest in 36.893 seconds (JVM running for 44.538)
+2022-11-04 13:27:24,424 INFO org.springframework.boot.StartupInfoLogger [main] Starting SeatServiceImplTest using Java 11.0.17 on DESKTOP-GP7DHUM with PID 5400 (started by Farha in C:\Users\Farha\OneDrive\Documents\coba ciCd\farhannuryadi_reservasi_bioskop)
+2022-11-04 13:27:24,428 DEBUG org.springframework.boot.StartupInfoLogger [main] Running with Spring Boot v2.7.3, Spring v5.3.22
+2022-11-04 13:27:24,429 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to 1 default profile: "default"
+2022-11-04 13:27:47,987 INFO org.springframework.boot.StartupInfoLogger [main] Started SeatServiceImplTest in 24.555 seconds (JVM running for 29.934)
+2022-11-04 13:28:54,155 INFO org.springframework.boot.StartupInfoLogger [main] Starting SeatServiceImplTest using Java 11.0.17 on DESKTOP-GP7DHUM with PID 14388 (started by Farha in C:\Users\Farha\OneDrive\Documents\coba ciCd\farhannuryadi_reservasi_bioskop)
+2022-11-04 13:28:54,157 DEBUG org.springframework.boot.StartupInfoLogger [main] Running with Spring Boot v2.7.3, Spring v5.3.22
+2022-11-04 13:28:54,159 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to 1 default profile: "default"
+2022-11-04 13:29:18,036 INFO org.springframework.boot.StartupInfoLogger [main] Started SeatServiceImplTest in 24.809 seconds (JVM running for 30.421)
+2022-11-04 13:31:01,193 INFO org.springframework.boot.StartupInfoLogger [main] Starting SeatServiceImplTest using Java 11.0.17 on DESKTOP-GP7DHUM with PID 636 (started by Farha in C:\Users\Farha\OneDrive\Documents\coba ciCd\farhannuryadi_reservasi_bioskop)
+2022-11-04 13:31:01,196 DEBUG org.springframework.boot.StartupInfoLogger [main] Running with Spring Boot v2.7.3, Spring v5.3.22
+2022-11-04 13:31:01,200 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to 1 default profile: "default"
+2022-11-04 13:31:26,323 INFO org.springframework.boot.StartupInfoLogger [main] Started SeatServiceImplTest in 26.183 seconds (JVM running for 32.114)
+2022-11-04 13:32:40,736 INFO org.springframework.boot.StartupInfoLogger [main] Starting SeatServiceImplTest using Java 11.0.17 on DESKTOP-GP7DHUM with PID 17952 (started by Farha in C:\Users\Farha\OneDrive\Documents\coba ciCd\farhannuryadi_reservasi_bioskop)
+2022-11-04 13:32:40,739 DEBUG org.springframework.boot.StartupInfoLogger [main] Running with Spring Boot v2.7.3, Spring v5.3.22
+2022-11-04 13:32:40,741 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to 1 default profile: "default"
+2022-11-04 13:33:04,868 INFO org.springframework.boot.StartupInfoLogger [main] Started SeatServiceImplTest in 25.623 seconds (JVM running for 32.424)
+2022-11-04 13:34:01,260 INFO org.springframework.boot.StartupInfoLogger [main] Starting SeatServiceImplTest using Java 11.0.17 on DESKTOP-GP7DHUM with PID 12464 (started by Farha in C:\Users\Farha\OneDrive\Documents\coba ciCd\farhannuryadi_reservasi_bioskop)
+2022-11-04 13:34:01,263 DEBUG org.springframework.boot.StartupInfoLogger [main] Running with Spring Boot v2.7.3, Spring v5.3.22
+2022-11-04 13:34:01,265 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to 1 default profile: "default"
+2022-11-04 13:34:24,967 INFO org.springframework.boot.StartupInfoLogger [main] Started SeatServiceImplTest in 24.735 seconds (JVM running for 30.348)
+2022-11-04 13:52:07,327 INFO org.springframework.boot.StartupInfoLogger [main] Starting SeatServiceImplTest using Java 11.0.17 on DESKTOP-GP7DHUM with PID 19828 (started by Farha in C:\Users\Farha\OneDrive\Documents\coba ciCd\farhannuryadi_reservasi_bioskop)
+2022-11-04 13:52:07,330 DEBUG org.springframework.boot.StartupInfoLogger [main] Running with Spring Boot v2.7.3, Spring v5.3.22
+2022-11-04 13:52:07,332 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to 1 default profile: "default"
+2022-11-04 13:52:31,199 INFO org.springframework.boot.StartupInfoLogger [main] Started SeatServiceImplTest in 24.928 seconds (JVM running for 31.063)
+2022-11-04 13:56:11,558 INFO org.springframework.boot.StartupInfoLogger [main] Starting SeatServiceImplTest using Java 11.0.17 on DESKTOP-GP7DHUM with PID 536 (started by Farha in C:\Users\Farha\OneDrive\Documents\coba ciCd\farhannuryadi_reservasi_bioskop)
+2022-11-04 13:56:11,561 DEBUG org.springframework.boot.StartupInfoLogger [main] Running with Spring Boot v2.7.3, Spring v5.3.22
+2022-11-04 13:56:11,563 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to 1 default profile: "default"
+2022-11-04 13:56:34,927 INFO org.springframework.boot.StartupInfoLogger [main] Started SeatServiceImplTest in 24.522 seconds (JVM running for 29.868)
+2022-11-04 14:09:55,345 INFO org.springframework.boot.StartupInfoLogger [main] Starting FilmServiceImplTest using Java 11.0.17 on DESKTOP-GP7DHUM with PID 9132 (started by Farha in C:\Users\Farha\OneDrive\Documents\coba ciCd\farhannuryadi_reservasi_bioskop)
+2022-11-04 14:09:55,348 DEBUG org.springframework.boot.StartupInfoLogger [main] Running with Spring Boot v2.7.3, Spring v5.3.22
+2022-11-04 14:09:55,350 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to 1 default profile: "default"
+2022-11-04 14:10:18,574 INFO org.springframework.boot.StartupInfoLogger [main] Started FilmServiceImplTest in 24.362 seconds (JVM running for 30.074)
+2022-11-04 14:13:02,690 INFO org.springframework.boot.StartupInfoLogger [main] Starting FilmServiceImplTest using Java 11.0.17 on DESKTOP-GP7DHUM with PID 5768 (started by Farha in C:\Users\Farha\OneDrive\Documents\coba ciCd\farhannuryadi_reservasi_bioskop)
+2022-11-04 14:13:02,693 DEBUG org.springframework.boot.StartupInfoLogger [main] Running with Spring Boot v2.7.3, Spring v5.3.22
+2022-11-04 14:13:02,695 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to 1 default profile: "default"
+2022-11-04 14:13:37,976 INFO org.springframework.boot.StartupInfoLogger [main] Started FilmServiceImplTest in 36.419 seconds (JVM running for 42.017)
+2022-11-04 14:14:15,161 INFO org.springframework.boot.StartupInfoLogger [main] Starting FilmServiceImplTest using Java 11.0.17 on DESKTOP-GP7DHUM with PID 18624 (started by Farha in C:\Users\Farha\OneDrive\Documents\coba ciCd\farhannuryadi_reservasi_bioskop)
+2022-11-04 14:14:15,164 DEBUG org.springframework.boot.StartupInfoLogger [main] Running with Spring Boot v2.7.3, Spring v5.3.22
+2022-11-04 14:14:15,165 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to 1 default profile: "default"
+2022-11-04 14:14:38,971 INFO org.springframework.boot.StartupInfoLogger [main] Started FilmServiceImplTest in 24.915 seconds (JVM running for 30.415)
+2022-11-04 14:19:49,373 INFO org.springframework.boot.StartupInfoLogger [main] Starting FilmServiceImplTest using Java 11.0.17 on DESKTOP-GP7DHUM with PID 18964 (started by Farha in C:\Users\Farha\OneDrive\Documents\coba ciCd\farhannuryadi_reservasi_bioskop)
+2022-11-04 14:19:49,376 DEBUG org.springframework.boot.StartupInfoLogger [main] Running with Spring Boot v2.7.3, Spring v5.3.22
+2022-11-04 14:19:49,379 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to 1 default profile: "default"
+2022-11-04 14:20:13,425 INFO org.springframework.boot.StartupInfoLogger [main] Started FilmServiceImplTest in 25.105 seconds (JVM running for 30.652)
+2022-11-04 14:24:24,344 INFO org.springframework.boot.StartupInfoLogger [main] Starting FilmServiceImplTest using Java 11.0.17 on DESKTOP-GP7DHUM with PID 14928 (started by Farha in C:\Users\Farha\OneDrive\Documents\coba ciCd\farhannuryadi_reservasi_bioskop)
+2022-11-04 14:24:24,347 DEBUG org.springframework.boot.StartupInfoLogger [main] Running with Spring Boot v2.7.3, Spring v5.3.22
+2022-11-04 14:24:24,348 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to 1 default profile: "default"
+2022-11-04 14:24:49,242 INFO org.springframework.boot.StartupInfoLogger [main] Started FilmServiceImplTest in 25.92 seconds (JVM running for 31.362)
+2022-11-04 14:26:27,404 INFO org.springframework.boot.StartupInfoLogger [main] Starting FilmServiceImplTest using Java 11.0.17 on DESKTOP-GP7DHUM with PID 12312 (started by Farha in C:\Users\Farha\OneDrive\Documents\coba ciCd\farhannuryadi_reservasi_bioskop)
+2022-11-04 14:26:27,408 DEBUG org.springframework.boot.StartupInfoLogger [main] Running with Spring Boot v2.7.3, Spring v5.3.22
+2022-11-04 14:26:27,411 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to 1 default profile: "default"
+2022-11-04 14:26:52,705 INFO org.springframework.boot.StartupInfoLogger [main] Started FilmServiceImplTest in 26.393 seconds (JVM running for 32.192)
+2022-11-04 14:28:27,236 INFO org.springframework.boot.StartupInfoLogger [main] Starting FilmServiceImplTest using Java 11.0.17 on DESKTOP-GP7DHUM with PID 19540 (started by Farha in C:\Users\Farha\OneDrive\Documents\coba ciCd\farhannuryadi_reservasi_bioskop)
+2022-11-04 14:28:27,239 DEBUG org.springframework.boot.StartupInfoLogger [main] Running with Spring Boot v2.7.3, Spring v5.3.22
+2022-11-04 14:28:27,242 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to 1 default profile: "default"
+2022-11-04 14:28:58,861 INFO org.springframework.boot.StartupInfoLogger [main] Started FilmServiceImplTest in 33.008 seconds (JVM running for 42.561)
+2022-11-04 14:29:28,999 INFO org.springframework.boot.StartupInfoLogger [main] Starting FilmServiceImplTest using Java 11.0.17 on DESKTOP-GP7DHUM with PID 10808 (started by Farha in C:\Users\Farha\OneDrive\Documents\coba ciCd\farhannuryadi_reservasi_bioskop)
+2022-11-04 14:29:29,002 DEBUG org.springframework.boot.StartupInfoLogger [main] Running with Spring Boot v2.7.3, Spring v5.3.22
+2022-11-04 14:29:29,035 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to 1 default profile: "default"
+2022-11-04 14:29:57,244 INFO org.springframework.boot.StartupInfoLogger [main] Started FilmServiceImplTest in 29.404 seconds (JVM running for 36.121)
+2022-11-04 14:32:34,894 INFO org.springframework.boot.StartupInfoLogger [main] Starting FilmServiceImplTest using Java 11.0.17 on DESKTOP-GP7DHUM with PID 20088 (started by Farha in C:\Users\Farha\OneDrive\Documents\coba ciCd\farhannuryadi_reservasi_bioskop)
+2022-11-04 14:32:34,897 DEBUG org.springframework.boot.StartupInfoLogger [main] Running with Spring Boot v2.7.3, Spring v5.3.22
+2022-11-04 14:32:34,898 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to 1 default profile: "default"
+2022-11-04 14:33:03,757 INFO org.springframework.boot.StartupInfoLogger [main] Started FilmServiceImplTest in 29.833 seconds (JVM running for 35.307)
+2022-11-04 14:34:03,148 INFO org.springframework.boot.StartupInfoLogger [main] Starting FilmServiceImplTest using Java 11.0.17 on DESKTOP-GP7DHUM with PID 19252 (started by Farha in C:\Users\Farha\OneDrive\Documents\coba ciCd\farhannuryadi_reservasi_bioskop)
+2022-11-04 14:34:03,154 DEBUG org.springframework.boot.StartupInfoLogger [main] Running with Spring Boot v2.7.3, Spring v5.3.22
+2022-11-04 14:34:03,156 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to 1 default profile: "default"
+2022-11-04 14:34:36,929 INFO org.springframework.boot.StartupInfoLogger [main] Started FilmServiceImplTest in 34.842 seconds (JVM running for 40.552)
+2022-11-04 14:39:37,609 INFO org.springframework.boot.StartupInfoLogger [main] Starting FilmServiceImplTest using Java 11.0.17 on DESKTOP-GP7DHUM with PID 16912 (started by Farha in C:\Users\Farha\OneDrive\Documents\coba ciCd\farhannuryadi_reservasi_bioskop)
+2022-11-04 14:39:37,612 DEBUG org.springframework.boot.StartupInfoLogger [main] Running with Spring Boot v2.7.3, Spring v5.3.22
+2022-11-04 14:39:37,613 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to 1 default profile: "default"
+2022-11-04 14:40:01,223 INFO org.springframework.boot.StartupInfoLogger [main] Started FilmServiceImplTest in 24.66 seconds (JVM running for 30.251)
+2022-11-04 14:46:44,443 INFO org.springframework.boot.StartupInfoLogger [main] Starting SeatServiceImplTest using Java 11.0.17 on DESKTOP-GP7DHUM with PID 16532 (started by Farha in C:\Users\Farha\OneDrive\Documents\coba ciCd\farhannuryadi_reservasi_bioskop)
+2022-11-04 14:46:44,448 DEBUG org.springframework.boot.StartupInfoLogger [main] Running with Spring Boot v2.7.3, Spring v5.3.22
+2022-11-04 14:46:44,451 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to 1 default profile: "default"
+2022-11-04 14:47:08,319 INFO org.springframework.boot.StartupInfoLogger [main] Started SeatServiceImplTest in 25.586 seconds (JVM running for 31.987)
+2022-11-04 15:00:26,966 INFO org.springframework.boot.StartupInfoLogger [main] Starting UserServiceImplTest using Java 11.0.17 on DESKTOP-GP7DHUM with PID 10092 (started by Farha in C:\Users\Farha\OneDrive\Documents\coba ciCd\farhannuryadi_reservasi_bioskop)
+2022-11-04 15:00:26,969 DEBUG org.springframework.boot.StartupInfoLogger [main] Running with Spring Boot v2.7.3, Spring v5.3.22
+2022-11-04 15:00:26,972 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to 1 default profile: "default"
+2022-11-04 15:00:51,460 INFO org.springframework.boot.StartupInfoLogger [main] Started UserServiceImplTest in 25.664 seconds (JVM running for 31.124)
+2022-11-04 15:03:03,400 INFO org.springframework.boot.StartupInfoLogger [main] Starting UserServiceImplTest using Java 11.0.17 on DESKTOP-GP7DHUM with PID 18816 (started by Farha in C:\Users\Farha\OneDrive\Documents\coba ciCd\farhannuryadi_reservasi_bioskop)
+2022-11-04 15:03:03,403 DEBUG org.springframework.boot.StartupInfoLogger [main] Running with Spring Boot v2.7.3, Spring v5.3.22
+2022-11-04 15:03:03,405 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to 1 default profile: "default"
+2022-11-04 15:03:27,666 INFO org.springframework.boot.StartupInfoLogger [main] Started UserServiceImplTest in 25.252 seconds (JVM running for 30.874)
+2022-11-04 15:05:02,240 INFO org.springframework.boot.StartupInfoLogger [main] Starting UserServiceImplTest using Java 11.0.17 on DESKTOP-GP7DHUM with PID 8496 (started by Farha in C:\Users\Farha\OneDrive\Documents\coba ciCd\farhannuryadi_reservasi_bioskop)
+2022-11-04 15:05:02,242 DEBUG org.springframework.boot.StartupInfoLogger [main] Running with Spring Boot v2.7.3, Spring v5.3.22
+2022-11-04 15:05:02,244 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to 1 default profile: "default"
+2022-11-04 15:05:25,658 INFO org.springframework.boot.StartupInfoLogger [main] Started UserServiceImplTest in 24.368 seconds (JVM running for 29.881)
+2022-11-04 15:07:25,472 INFO org.springframework.boot.StartupInfoLogger [main] Starting UserServiceImplTest using Java 11.0.17 on DESKTOP-GP7DHUM with PID 15708 (started by Farha in C:\Users\Farha\OneDrive\Documents\coba ciCd\farhannuryadi_reservasi_bioskop)
+2022-11-04 15:07:25,475 DEBUG org.springframework.boot.StartupInfoLogger [main] Running with Spring Boot v2.7.3, Spring v5.3.22
+2022-11-04 15:07:25,477 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to 1 default profile: "default"
+2022-11-04 15:07:49,043 INFO org.springframework.boot.StartupInfoLogger [main] Started UserServiceImplTest in 24.665 seconds (JVM running for 29.897)
+2022-11-04 15:11:10,568 INFO org.springframework.boot.StartupInfoLogger [main] Starting UserServiceImplTest using Java 11.0.17 on DESKTOP-GP7DHUM with PID 19520 (started by Farha in C:\Users\Farha\OneDrive\Documents\coba ciCd\farhannuryadi_reservasi_bioskop)
+2022-11-04 15:11:10,571 DEBUG org.springframework.boot.StartupInfoLogger [main] Running with Spring Boot v2.7.3, Spring v5.3.22
+2022-11-04 15:11:10,573 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to 1 default profile: "default"
+2022-11-04 15:11:37,064 INFO org.springframework.boot.StartupInfoLogger [main] Started UserServiceImplTest in 27.819 seconds (JVM running for 33.236)
+2022-11-04 15:28:51,538 INFO org.springframework.boot.StartupInfoLogger [main] Starting ScheduleServiceImplTest using Java 11.0.17 on DESKTOP-GP7DHUM with PID 15848 (started by Farha in C:\Users\Farha\OneDrive\Documents\coba ciCd\farhannuryadi_reservasi_bioskop)
+2022-11-04 15:28:51,542 DEBUG org.springframework.boot.StartupInfoLogger [main] Running with Spring Boot v2.7.3, Spring v5.3.22
+2022-11-04 15:28:51,544 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to 1 default profile: "default"
+2022-11-04 15:29:23,702 INFO org.springframework.boot.StartupInfoLogger [main] Started ScheduleServiceImplTest in 33.327 seconds (JVM running for 39.247)
+2022-11-04 15:40:58,597 INFO org.springframework.boot.StartupInfoLogger [main] Starting ScheduleServiceImplTest using Java 11.0.17 on DESKTOP-GP7DHUM with PID 8160 (started by Farha in C:\Users\Farha\OneDrive\Documents\coba ciCd\farhannuryadi_reservasi_bioskop)
+2022-11-04 15:40:58,600 DEBUG org.springframework.boot.StartupInfoLogger [main] Running with Spring Boot v2.7.3, Spring v5.3.22
+2022-11-04 15:40:58,602 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to 1 default profile: "default"
+2022-11-04 15:41:29,029 INFO org.springframework.boot.StartupInfoLogger [main] Started ScheduleServiceImplTest in 31.631 seconds (JVM running for 37.185)
+2022-11-04 15:43:50,157 INFO org.springframework.boot.StartupInfoLogger [main] Starting ScheduleServiceImplTest using Java 11.0.17 on DESKTOP-GP7DHUM with PID 12196 (started by Farha in C:\Users\Farha\OneDrive\Documents\coba ciCd\farhannuryadi_reservasi_bioskop)
+2022-11-04 15:43:50,160 DEBUG org.springframework.boot.StartupInfoLogger [main] Running with Spring Boot v2.7.3, Spring v5.3.22
+2022-11-04 15:43:50,163 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to 1 default profile: "default"
+2022-11-04 15:44:17,329 INFO org.springframework.boot.StartupInfoLogger [main] Started ScheduleServiceImplTest in 28.642 seconds (JVM running for 36.72)
+2022-11-04 15:45:14,662 INFO org.springframework.boot.StartupInfoLogger [main] Starting ScheduleServiceImplTest using Java 11.0.17 on DESKTOP-GP7DHUM with PID 5520 (started by Farha in C:\Users\Farha\OneDrive\Documents\coba ciCd\farhannuryadi_reservasi_bioskop)
+2022-11-04 15:45:14,665 DEBUG org.springframework.boot.StartupInfoLogger [main] Running with Spring Boot v2.7.3, Spring v5.3.22
+2022-11-04 15:45:14,666 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to 1 default profile: "default"
+2022-11-04 15:45:38,516 INFO org.springframework.boot.StartupInfoLogger [main] Started ScheduleServiceImplTest in 24.992 seconds (JVM running for 30.767)
+2022-11-04 15:47:21,421 INFO org.springframework.boot.StartupInfoLogger [main] Starting ScheduleServiceImplTest using Java 11.0.17 on DESKTOP-GP7DHUM with PID 13596 (started by Farha in C:\Users\Farha\OneDrive\Documents\coba ciCd\farhannuryadi_reservasi_bioskop)
+2022-11-04 15:47:21,424 DEBUG org.springframework.boot.StartupInfoLogger [main] Running with Spring Boot v2.7.3, Spring v5.3.22
+2022-11-04 15:47:21,426 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to 1 default profile: "default"
+2022-11-04 15:47:45,908 INFO org.springframework.boot.StartupInfoLogger [main] Started ScheduleServiceImplTest in 25.662 seconds (JVM running for 31.189)
+2022-11-04 15:51:41,426 INFO org.springframework.boot.StartupInfoLogger [main] Starting ScheduleServiceImplTest using Java 11.0.17 on DESKTOP-GP7DHUM with PID 11904 (started by Farha in C:\Users\Farha\OneDrive\Documents\coba ciCd\farhannuryadi_reservasi_bioskop)
+2022-11-04 15:51:41,429 DEBUG org.springframework.boot.StartupInfoLogger [main] Running with Spring Boot v2.7.3, Spring v5.3.22
+2022-11-04 15:51:41,432 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to 1 default profile: "default"
+2022-11-04 15:52:03,988 INFO org.springframework.boot.StartupInfoLogger [main] Started ScheduleServiceImplTest in 23.697 seconds (JVM running for 29.169)

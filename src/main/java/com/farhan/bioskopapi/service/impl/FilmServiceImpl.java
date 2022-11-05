@@ -14,7 +14,7 @@ import java.util.Optional;
 @Transactional
 public class FilmServiceImpl implements FilmService {
 
-    private FilmRepository filmRepository;
+    private final FilmRepository filmRepository;
 
     @Autowired
     public FilmServiceImpl(FilmRepository filmRepository) {

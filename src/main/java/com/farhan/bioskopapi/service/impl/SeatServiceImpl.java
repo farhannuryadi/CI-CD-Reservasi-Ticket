@@ -28,5 +28,4 @@ public class SeatServiceImpl implements SeatService {
         return seatRepository.findSeatAvailable(scheduleId);
     }
 
-
 }
