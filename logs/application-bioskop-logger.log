@@ -1,8 +1,13 @@
-2022-11-05 11:54:12,379 INFO org.springframework.boot.StartupInfoLogger [main] Starting OrderServiceImplTest using Java 11.0.17 on DESKTOP-GP7DHUM with PID 19296 (started by Farha in C:\Users\Farha\OneDrive\Documents\coba ciCd\farhannuryadi_reservasi_bioskop)
-2022-11-05 11:54:12,384 DEBUG org.springframework.boot.StartupInfoLogger [main] Running with Spring Boot v2.7.3, Spring v5.3.22
-2022-11-05 11:54:12,385 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to 1 default profile: "default"
-2022-11-05 11:54:44,899 INFO org.springframework.boot.StartupInfoLogger [main] Started OrderServiceImplTest in 34.416 seconds (JVM running for 39.783)
-2022-11-05 11:56:11,677 INFO org.springframework.boot.StartupInfoLogger [main] Starting OrderServiceImplTest using Java 11.0.17 on DESKTOP-GP7DHUM with PID 18292 (started by Farha in C:\Users\Farha\OneDrive\Documents\coba ciCd\farhannuryadi_reservasi_bioskop)
-2022-11-05 11:56:11,680 DEBUG org.springframework.boot.StartupInfoLogger [main] Running with Spring Boot v2.7.3, Spring v5.3.22
-2022-11-05 11:56:11,682 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to 1 default profile: "default"
-2022-11-05 11:56:32,732 INFO org.springframework.boot.StartupInfoLogger [main] Started OrderServiceImplTest in 21.979 seconds (JVM running for 25.251)
+2022-11-06 09:58:08,930 INFO org.springframework.boot.StartupInfoLogger [restartedMain] Starting BioskopApiApplication using Java 11.0.17 on DESKTOP-GP7DHUM with PID 9000 (C:\Users\Farha\OneDrive\Documents\coba ciCd\farhannuryadi_reservasi_bioskop\target\classes started by Farha in C:\Users\Farha\OneDrive\Documents\coba ciCd\farhannuryadi_reservasi_bioskop)
+2022-11-06 09:58:08,938 DEBUG org.springframework.boot.StartupInfoLogger [restartedMain] Running with Spring Boot v2.7.3, Spring v5.3.22
+2022-11-06 09:58:08,942 INFO org.springframework.boot.SpringApplication [restartedMain] No active profile set, falling back to 1 default profile: "default"
+2022-11-06 09:58:47,578 DEBUG org.springframework.web.filter.GenericFilterBean [restartedMain] Filter 'authenticationJwtTokenFilter' configured for use
+2022-11-06 09:58:58,502 INFO org.springframework.boot.StartupInfoLogger [restartedMain] Started BioskopApiApplication in 52.311 seconds (JVM running for 58.778)
+2022-11-06 10:59:37,550 INFO org.springframework.boot.StartupInfoLogger [restartedMain] Starting BioskopApiApplication using Java 11.0.17 on DESKTOP-GP7DHUM with PID 11516 (C:\Users\Farha\OneDrive\Documents\coba ciCd\farhannuryadi_reservasi_bioskop\target\classes started by Farha in C:\Users\Farha\OneDrive\Documents\coba ciCd\farhannuryadi_reservasi_bioskop)
+2022-11-06 10:59:37,557 DEBUG org.springframework.boot.StartupInfoLogger [restartedMain] Running with Spring Boot v2.7.3, Spring v5.3.22
+2022-11-06 10:59:37,559 INFO org.springframework.boot.SpringApplication [restartedMain] No active profile set, falling back to 1 default profile: "default"
+2022-11-06 11:00:02,650 DEBUG org.springframework.web.filter.GenericFilterBean [restartedMain] Filter 'authenticationJwtTokenFilter' configured for use
+2022-11-06 11:00:05,387 INFO com.farhan.bioskopapi.firebase.FCMInitializer [restartedMain] Firebase application has been initialized
+2022-11-06 11:00:11,743 INFO org.springframework.boot.StartupInfoLogger [restartedMain] Started BioskopApiApplication in 36.333 seconds (JVM running for 41.647)
+2022-11-06 11:02:21,978 ERROR com.farhan.bioskopapi.firebase.PushNotificationService [http-nio-8080-exec-3] com.google.firebase.messaging.FirebaseMessagingException: The registration token is not a valid FCM registration token
+2022-11-06 11:04:09,122 ERROR com.farhan.bioskopapi.firebase.PushNotificationService [http-nio-8080-exec-5] com.google.firebase.messaging.FirebaseMessagingException: The registration token is not a valid FCM registration token

@@ -1,0 +1,8 @@
+2022-11-05 11:54:12,379 INFO org.springframework.boot.StartupInfoLogger [main] Starting OrderServiceImplTest using Java 11.0.17 on DESKTOP-GP7DHUM with PID 19296 (started by Farha in C:\Users\Farha\OneDrive\Documents\coba ciCd\farhannuryadi_reservasi_bioskop)
+2022-11-05 11:54:12,384 DEBUG org.springframework.boot.StartupInfoLogger [main] Running with Spring Boot v2.7.3, Spring v5.3.22
+2022-11-05 11:54:12,385 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to 1 default profile: "default"
+2022-11-05 11:54:44,899 INFO org.springframework.boot.StartupInfoLogger [main] Started OrderServiceImplTest in 34.416 seconds (JVM running for 39.783)
+2022-11-05 11:56:11,677 INFO org.springframework.boot.StartupInfoLogger [main] Starting OrderServiceImplTest using Java 11.0.17 on DESKTOP-GP7DHUM with PID 18292 (started by Farha in C:\Users\Farha\OneDrive\Documents\coba ciCd\farhannuryadi_reservasi_bioskop)
+2022-11-05 11:56:11,680 DEBUG org.springframework.boot.StartupInfoLogger [main] Running with Spring Boot v2.7.3, Spring v5.3.22
+2022-11-05 11:56:11,682 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to 1 default profile: "default"
+2022-11-05 11:56:32,732 INFO org.springframework.boot.StartupInfoLogger [main] Started OrderServiceImplTest in 21.979 seconds (JVM running for 25.251)

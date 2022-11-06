@@ -1,1 +1,2 @@
-2022-10-21 09:07:29,766 WARN com.farhan.bioskopapi.controller.FilmController [http-nio-8080-exec-10] request invalid :[film name is required]
+2022-11-06 11:02:21,978 ERROR com.farhan.bioskopapi.firebase.PushNotificationService [http-nio-8080-exec-3] com.google.firebase.messaging.FirebaseMessagingException: The registration token is not a valid FCM registration token
+2022-11-06 11:04:09,122 ERROR com.farhan.bioskopapi.firebase.PushNotificationService [http-nio-8080-exec-5] com.google.firebase.messaging.FirebaseMessagingException: The registration token is not a valid FCM registration token
