@@ -22,6 +22,7 @@ public class PushNotificationService {
             fcmService.sendMessageToToken(request);
         } catch (Exception e) {
             logger.error(e.getMessage());
+            Thread.currentThread().interrupt();
         }
     }
 }

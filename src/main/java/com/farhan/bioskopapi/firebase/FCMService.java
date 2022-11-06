@@ -1,7 +1,6 @@
 package com.farhan.bioskopapi.firebase;
 
 import java.time.Duration;
-import java.util.Map;
 import java.util.concurrent.ExecutionException;
 
 import com.farhan.bioskopapi.dto.request.PushNotificationRequest;
@@ -29,7 +28,7 @@ public class FCMService {
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
         String jsonOutput = gson.toJson(message);
         String response = sendAndGetResponse(message);
-        logger.info("Sent message to token. Device token: " + request.getToken() + ", " + response+ " msg "+jsonOutput);
+        logger.info("Sent message to token. Device token: {} , {} Message : {}",request.getToken(), response, jsonOutput);
     }
     
     private String sendAndGetResponse(Message message) throws InterruptedException, ExecutionException {
@@ -52,14 +51,7 @@ public class FCMService {
         return getPreconfiguredMessageBuilder(request).setToken(request.getToken())
                 .build();
     }
-    private Message getPreconfiguredMessageWithoutData(PushNotificationRequest request) {
-        return getPreconfiguredMessageBuilder(request).setTopic(request.getTopic())
-                .build();
-    }
-    private Message getPreconfiguredMessageWithData(Map<String, String> data, PushNotificationRequest request) {
-        return getPreconfiguredMessageBuilder(request).putAllData(data).setToken(request.getToken())
-                .build();
-    }
+
     private Message.Builder getPreconfiguredMessageBuilder(PushNotificationRequest request) {
         AndroidConfig androidConfig = getAndroidConfig(request.getTopic());
         ApnsConfig apnsConfig = getApnsConfig(request.getTopic());
