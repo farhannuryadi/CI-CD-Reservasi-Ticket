@@ -25,3 +25,29 @@
 2022-11-06 11:22:45,572 INFO com.farhan.bioskopapi.firebase.FCMInitializer [restartedMain] Firebase application has been initialized
 2022-11-06 11:22:51,475 INFO org.springframework.boot.StartupInfoLogger [restartedMain] Started BioskopApiApplication in 27.117 seconds (JVM running for 30.27)
 2022-11-06 11:23:45,492 ERROR com.farhan.bioskopapi.firebase.PushNotificationService [http-nio-8080-exec-1] com.google.firebase.messaging.FirebaseMessagingException: The registration token is not a valid FCM registration token
+2022-11-06 12:17:18,127 INFO org.springframework.boot.StartupInfoLogger [restartedMain] Starting BioskopApiApplication using Java 11.0.17 on DESKTOP-GP7DHUM with PID 3300 (C:\Users\Farha\OneDrive\Documents\coba ciCd\farhannuryadi_reservasi_bioskop\target\classes started by Farha in C:\Users\Farha\OneDrive\Documents\coba ciCd\farhannuryadi_reservasi_bioskop)
+2022-11-06 12:17:18,147 DEBUG org.springframework.boot.StartupInfoLogger [restartedMain] Running with Spring Boot v2.7.3, Spring v5.3.22
+2022-11-06 12:17:18,149 INFO org.springframework.boot.SpringApplication [restartedMain] No active profile set, falling back to 1 default profile: "default"
+2022-11-06 12:17:38,326 DEBUG org.springframework.web.filter.GenericFilterBean [restartedMain] Filter 'authenticationJwtTokenFilter' configured for use
+2022-11-06 12:17:41,527 INFO com.farhan.bioskopapi.firebase.FCMInitializer [restartedMain] Firebase application has been initialized
+2022-11-06 12:17:52,045 INFO org.springframework.boot.StartupInfoLogger [restartedMain] Started BioskopApiApplication in 34.965 seconds (JVM running for 37.645)
+2022-11-06 12:31:26,766 INFO org.springframework.boot.StartupInfoLogger [main] Starting StudioRepositoryTest using Java 11.0.17 on DESKTOP-GP7DHUM with PID 10764 (started by Farha in C:\Users\Farha\OneDrive\Documents\coba ciCd\farhannuryadi_reservasi_bioskop)
+2022-11-06 12:31:26,768 DEBUG org.springframework.boot.StartupInfoLogger [main] Running with Spring Boot v2.7.3, Spring v5.3.22
+2022-11-06 12:31:26,775 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to 1 default profile: "default"
+2022-11-06 12:31:43,474 INFO com.farhan.bioskopapi.firebase.FCMInitializer [main] Firebase application has been initialized
+2022-11-06 12:31:51,497 INFO org.springframework.boot.StartupInfoLogger [main] Started StudioRepositoryTest in 25.912 seconds (JVM running for 31.594)
+2022-11-06 12:33:01,082 INFO org.springframework.boot.StartupInfoLogger [main] Starting StudioRepositoryTest using Java 11.0.17 on DESKTOP-GP7DHUM with PID 8012 (started by Farha in C:\Users\Farha\OneDrive\Documents\coba ciCd\farhannuryadi_reservasi_bioskop)
+2022-11-06 12:33:01,084 DEBUG org.springframework.boot.StartupInfoLogger [main] Running with Spring Boot v2.7.3, Spring v5.3.22
+2022-11-06 12:33:01,086 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to 1 default profile: "default"
+2022-11-06 12:33:16,217 INFO com.farhan.bioskopapi.firebase.FCMInitializer [main] Firebase application has been initialized
+2022-11-06 12:33:23,953 INFO org.springframework.boot.StartupInfoLogger [main] Started StudioRepositoryTest in 23.7 seconds (JVM running for 27.292)
+2022-11-06 12:38:44,355 INFO org.springframework.boot.StartupInfoLogger [main] Starting UserRepositoryTest using Java 11.0.17 on DESKTOP-GP7DHUM with PID 12052 (started by Farha in C:\Users\Farha\OneDrive\Documents\coba ciCd\farhannuryadi_reservasi_bioskop)
+2022-11-06 12:38:44,358 DEBUG org.springframework.boot.StartupInfoLogger [main] Running with Spring Boot v2.7.3, Spring v5.3.22
+2022-11-06 12:38:44,360 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to 1 default profile: "default"
+2022-11-06 12:38:58,461 INFO com.farhan.bioskopapi.firebase.FCMInitializer [main] Firebase application has been initialized
+2022-11-06 12:39:06,045 INFO org.springframework.boot.StartupInfoLogger [main] Started UserRepositoryTest in 22.543 seconds (JVM running for 26.178)
+2022-11-06 12:40:08,262 INFO org.springframework.boot.StartupInfoLogger [main] Starting UserRepositoryTest using Java 11.0.17 on DESKTOP-GP7DHUM with PID 15396 (started by Farha in C:\Users\Farha\OneDrive\Documents\coba ciCd\farhannuryadi_reservasi_bioskop)
+2022-11-06 12:40:08,274 DEBUG org.springframework.boot.StartupInfoLogger [main] Running with Spring Boot v2.7.3, Spring v5.3.22
+2022-11-06 12:40:08,275 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to 1 default profile: "default"
+2022-11-06 12:40:22,054 INFO com.farhan.bioskopapi.firebase.FCMInitializer [main] Firebase application has been initialized
+2022-11-06 12:40:29,311 INFO org.springframework.boot.StartupInfoLogger [main] Started UserRepositoryTest in 21.805 seconds (JVM running for 25.273)
